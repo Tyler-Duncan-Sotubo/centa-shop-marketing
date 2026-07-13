@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import LogoMark from "./logo-mark";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/page-aboutus", label: "About" },
@@ -40,14 +40,15 @@ export default function Navbar() {
       className="defaultscroll !bg-white dark:!bg-slate-900 shadow-sm dark:shadow-gray-800"
     >
       <div className="container relative">
-        <Link
-          className="logo flex items-center gap-2"
-          href="/"
-        >
-          <LogoMark className="size-8" />
-          <span className="text-xl font-bold text-black dark:text-white">
-            SalesCenta
-          </span>
+        <Link href="/" className="logo flex items-center h-16">
+          <Image
+            src="/salescenta-logo.png"
+            alt="Logo"
+            width={140}
+            height={40}
+            className="block"
+            priority
+          />
         </Link>
 
         <div className="menu-extras">
