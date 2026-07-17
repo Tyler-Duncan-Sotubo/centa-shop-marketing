@@ -149,12 +149,12 @@ export async function BlogPostPage({ slug }: { slug: string }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {post.coverImageUrl && (
-        <div className="relative h-72 w-full overflow-hidden md:h-[26rem]">
+        <div className="mt-16 relative h-72 w-full overflow-hidden md:h-[26rem]">
           <Image
             src={post.coverImageUrl}
             fill
             sizes="100vw"
-            className="object-cover object-top"
+            className="object-cover object-center"
             alt={post.title}
             unoptimized
             priority
