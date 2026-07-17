@@ -1,7 +1,9 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import * as Icon from "react-feather";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { usePathname } from "next/navigation";
 
 interface FooterLink {
   route: string;
@@ -32,6 +34,9 @@ const paymentLogos = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/admin")) return null;
+
   return (
     <footer className="relative bg-slate-900 dark:bg-slate-800 text-gray-200 dark:text-gray-200">
       <div className="container relative">
@@ -40,11 +45,14 @@ export default function Footer() {
             <div className="py-15 px-0">
               <div className="grid md:grid-cols-12 grid-cols-1 gap-7.5">
                 <div className="lg:col-span-3 md:col-span-12">
-                  <Link href="/" className="text-[22px] focus:outline-none">
+                  <Link
+                    href="/"
+                    className="inline-flex w-fit items-center rounded-lg bg-white px-3 py-2 focus:outline-none"
+                  >
                     <Image
-                      src="/images/logo-light.png"
+                      src="/salescenta-logo.png"
                       width={138}
-                      height={24}
+                      height={26}
                       alt="SalesCenta"
                     />
                   </Link>
@@ -120,8 +128,7 @@ export default function Footer() {
                     Reach us on WhatsApp for setup help or support.
                   </p>
                   <Link
-                    href="https://wa.me/000000000000"
-                    target="_blank"
+                    href="/contact-one"
                     className="py-2 px-5 inline-flex items-center font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-primary-700 border-primary hover:border-primary-700 text-white rounded-md mt-4"
                   >
                     <Icon.MessageCircle className="size-4 me-2" /> WhatsApp us

@@ -48,7 +48,7 @@ export default function HomePage() {
 
                 <div className="relative mt-8">
                   <Link
-                    href="#"
+                    href="https://app.salescenta.com/signup"
                     className="py-4 px-5 mr-4 inline-block font-semibold tracking-wide border align-middle text-base text-center bg-primary hover:bg-primary-700 border-primary hover:border-primary-700 text-white rounded-xl me-2 hover:scale-105 transition-transform duration-300"
                   >
                     Start your free trial{" "}

@@ -1,20 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+import { HiArrowUpRight } from "react-icons/hi2";
 
-/**
- * Real stores running on SalesCenta. Placeholder names/links/images until
- * real client screenshots and permission to feature them are confirmed.
- */
+/** Real stores running on SalesCenta. */
 export const websites: { name: string; href: string; image: string }[] = [
-  { name: "Store Name One", href: "#", image: "/images/portfolio/01.jpg" },
-  { name: "Store Name Two", href: "#", image: "/images/portfolio/03.jpg" },
-  { name: "Store Name Three", href: "#", image: "/images/portfolio/8.jpg" },
-  { name: "Store Name Four", href: "#", image: "/images/portfolio/04.jpg" },
-  { name: "Store Name Five", href: "#", image: "/images/portfolio/05.jpg" },
-  { name: "Store Name Six", href: "#", image: "/images/portfolio/06.jpg" },
-  { name: "Store Name Seven", href: "#", image: "/images/portfolio/07.jpg" },
-  { name: "Store Name Eight", href: "#", image: "/images/portfolio/09.jpg" },
-  { name: "Store Name Nine", href: "#", image: "/images/portfolio/10.jpg" },
+  { name: "Serene", href: "https://serene.ng/", image: "/showcase/serene.png" },
+  { name: "Greysteed", href: "https://greysteed.com/", image: "/showcase/grey.png" },
+  { name: "SalesCenta Demo", href: "https://demo.salescenta.com/", image: "/showcase/demo.png" },
 ];
 
 export default function WebsitesGallery({ limit }: { limit?: number }) {
@@ -27,22 +19,24 @@ export default function WebsitesGallery({ limit }: { limit?: number }) {
           href={site.href}
           target="_blank"
           key={site.name}
-          className="group block"
+          className="group block overflow-hidden rounded-2xl bg-gray-50 p-3 shadow-sm ring-1 ring-black/5 transition-shadow duration-300 hover:shadow-lg dark:bg-slate-800 dark:ring-white/10"
         >
-          <div className="relative rounded-lg overflow-hidden shadow-md dark:shadow-gray-800">
+          <div className="relative h-56 w-full overflow-hidden rounded-xl bg-white">
             <Image
               src={site.image}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: "100%", height: "auto" }}
-              className="transition duration-500 ease-in-out group-hover:scale-110"
+              fill
+              sizes="(min-width: 768px) 33vw, 100vw"
+              className="object-cover object-top transition duration-500 ease-in-out group-hover:scale-105"
               alt={site.name}
             />
           </div>
-          <div className="mt-4 text-center">
-            <span className="text-lg font-medium text-black dark:text-white group-hover:text-primary transition duration-500 ease-in-out">
+          <div className="flex items-center justify-between px-2 pb-1 pt-4">
+            <span className="text-base font-bold text-black dark:text-white">
               {site.name}
+            </span>
+            <span className="inline-flex items-center gap-1 text-sm font-medium text-black transition-colors duration-300 group-hover:text-primary dark:text-white">
+              Visit
+              <HiArrowUpRight className="size-4" />
             </span>
           </div>
         </Link>

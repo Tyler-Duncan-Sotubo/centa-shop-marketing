@@ -112,7 +112,7 @@ export default function Integrations() {
 
         <div className="mt-6">
           <Link
-            href="/page-pricing"
+            href="https://app.salescenta.com/signup"
             className="mx-auto py-4 px-10 inline-flex items-center font-semibold tracking-wide align-middle duration-500 text-base text-center bg-primary hover:bg-primary-dark dark:bg-white dark:hover:bg-gray-200 text-white dark:text-slate-900 rounded-xl"
           >
             Get started

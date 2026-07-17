@@ -8,12 +8,16 @@ const navLinks = [
   { href: "/page-aboutus", label: "About" },
   { href: "/page-pricing", label: "Pricing & Features" },
   { href: "/showcase", label: "Showcase" },
+  { href: "/learn", label: "Learn" },
   { href: "/contact-one", label: "Contact" },
 ];
 
 export default function Navbar() {
   const [isMenu, setIsMenu] = useState(false);
   const pathname = usePathname();
+
+  // Internal content admin has its own chrome — no marketing nav.
+  if (pathname?.startsWith("/admin")) return null;
 
   useEffect(() => {
     function windowScroll() {
@@ -74,7 +78,7 @@ export default function Navbar() {
         <ul className="buy-button list-none space-x-1 mb-0">
           <li className="inline mb-0">
             <Link
-              href="/page-pricing"
+              href="https://app.salescenta.com/signup"
               className="py-2 px-5 inline-flex items-center font-semibold tracking-wide align-middle duration-500 text-base text-center rounded-full bg-primary hover:bg-primary-700 border border-primary hover:border-primary-700 text-white"
             >
               Start free trial

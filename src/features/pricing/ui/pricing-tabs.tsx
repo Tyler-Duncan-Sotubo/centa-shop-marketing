@@ -32,7 +32,7 @@ const monthlyTiers: Tier[] = [
       "Email support",
     ],
     cta: "Buy Now",
-    href: "#",
+    href: "https://app.salescenta.com/signup",
   },
   {
     name: "Growth",
@@ -47,7 +47,7 @@ const monthlyTiers: Tier[] = [
       "Google Analytics & Meta Pixel",
     ],
     cta: "Try it Now",
-    href: "#",
+    href: "https://app.salescenta.com/signup",
     highlight: true,
   },
   {
@@ -64,7 +64,7 @@ const monthlyTiers: Tier[] = [
       "Priority support",
     ],
     cta: "Started Now",
-    href: "#",
+    href: "https://app.salescenta.com/signup",
   },
   {
     name: "Enterprise",
