@@ -31,11 +31,14 @@ const PUBLISHED_WHERE = and(
   sql`${platformPosts.publishedAt} <= now()`,
 );
 
+const SITE_URL = "https://salescenta.com";
+
 // Wrapped in React's cache() so generateMetadata and the page body
 // share one query per request instead of hitting the DB twice.
 export const getPublishedPostBySlug = cache(async (slug: string) => {
   return db.query.platformPosts.findFirst({
     where: and(eq(platformPosts.slug, slug), PUBLISHED_WHERE),
+    with: { author: { columns: { name: true } } },
   });
 });
 
@@ -112,8 +115,39 @@ export async function BlogPostPage({ slug }: { slug: string }) {
 
   const readingMinutes = estimateReadingMinutes(post.body);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.seoDescription || post.excerpt || undefined,
+    image: post.coverImageUrl || undefined,
+    datePublished: post.publishedAt?.toISOString(),
+    dateModified: (post.updatedAt ?? post.publishedAt)?.toISOString(),
+    author: {
+      "@type": "Person",
+      name: post.author?.name ?? "SalesCenta",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "SalesCenta",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/salescenta-logo.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/blog/${post.slug}`,
+    },
+  };
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {post.coverImageUrl && (
         <div className="relative h-72 w-full overflow-hidden md:h-[26rem]">
           <Image
