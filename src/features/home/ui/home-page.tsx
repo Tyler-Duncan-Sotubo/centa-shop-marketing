@@ -41,9 +41,9 @@ export default function HomePage() {
                   </span>
                 </h4>
                 <p className="text-slate-400 text-lg max-w-xl">
-                  A commerce platform built for how Nigerian merchants sell —
-                  WhatsApp checkout, bank transfer, and NGN pricing, all built
-                  in from day one.
+                  Everything your shop needs — website, POS, stock, invoices,
+                  marketing — in one app that works how Nigeria pays. No
+                  computer needed.
                 </p>
 
                 <div className="relative mt-8">

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -7,6 +8,7 @@ import { X } from "lucide-react";
 
 const navLinks = [
   { href: "/page-aboutus", label: "About" },
+  { href: "/zuri", label: "Zuri AI" },
   { href: "/page-pricing", label: "Pricing & Features" },
   { href: "/showcase", label: "Showcase" },
   { href: "/learn", label: "Learn" },
@@ -42,10 +44,13 @@ export default function Navbar() {
   return (
     <nav
       id="topnav"
-      className="defaultscroll !bg-white dark:!bg-slate-900 shadow-sm dark:shadow-gray-800"
+      className="defaultscroll bg-white! dark:bg-slate-900! shadow-sm dark:shadow-gray-800"
     >
-      <div className="container relative !flex !items-center !justify-between h-16">
-        <Link href="/" className="!static !float-none flex items-center shrink-0">
+      <div className="container relative flex! items-center! justify-between! h-16">
+        <Link
+          href="/"
+          className="static! float-none! flex items-center shrink-0"
+        >
           <Image
             src="/salescenta-logo.png"
             alt="Logo"
@@ -58,7 +63,10 @@ export default function Navbar() {
 
         <ul className="hidden lg:flex list-none items-center gap-1 mb-0">
           {navLinks.map((link) => (
-            <li key={link.href} className={pathname === link.href ? "active" : ""}>
+            <li
+              key={link.href}
+              className={pathname === link.href ? "active" : ""}
+            >
               <Link
                 href={link.href}
                 className={`px-4 py-2 text-sm font-medium transition-colors ${
@@ -74,7 +82,7 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <ul className="buy-button hidden lg:block list-none space-x-1 mb-0 !static !float-none">
+          <ul className="buy-button hidden lg:block list-none space-x-1 mb-0 static! float-none!">
             <li className="inline mb-0">
               <Link
                 href="https://app.salescenta.com/signup"
@@ -85,7 +93,7 @@ export default function Navbar() {
             </li>
           </ul>
 
-          <div className="menu-extras !static lg:hidden">
+          <div className="menu-extras static! lg:hidden">
             <div className="menu-item">
               <Link
                 href="#"

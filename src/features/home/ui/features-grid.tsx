@@ -5,8 +5,8 @@ import {
   HiOutlineTemplate,
   HiOutlineTag,
   HiOutlineUserGroup,
-  HiOutlineShoppingCart,
   HiOutlineChartBar,
+  HiOutlineSparkles,
 } from "react-icons/hi";
 
 interface Feature {
@@ -14,6 +14,7 @@ interface Feature {
   title: string;
   desc: string;
   color: string;
+  href?: string;
 }
 
 const features: Feature[] = [
@@ -31,15 +32,9 @@ const features: Feature[] = [
   },
   {
     icon: HiOutlineTag,
-    title: "Discounts & campaigns",
-    desc: "Run discount codes and send email or SMS campaigns to your customer list, right from your dashboard.",
+    title: "Marketing that runs itself",
+    desc: "Discount codes, email and SMS campaigns, and automatic follow-ups for abandoned carts — fewer sales slip away.",
     color: "#7c3aed",
-  },
-  {
-    icon: HiOutlineShoppingCart,
-    title: "Abandoned cart recovery",
-    desc: "Automatically follow up with customers who leave items in their cart, so fewer sales slip away.",
-    color: "#0866ff",
   },
   {
     icon: HiOutlineUserGroup,
@@ -52,6 +47,13 @@ const features: Feature[] = [
     title: "Real analytics, not guesswork",
     desc: "Track revenue, orders, and store performance, plus GA4, Meta Pixel, TikTok Pixel, and more.",
     color: "#00c3f7",
+  },
+  {
+    icon: HiOutlineSparkles,
+    title: "Zuri, your AI assistant",
+    desc: "Ask about your sales, stock, and payments in plain language — and get step-by-step help using the app.",
+    color: "#f43f5e",
+    href: "/zuri",
   },
 ];
 
@@ -71,7 +73,7 @@ export default function FeaturesGrid() {
 
             <div className="mt-6">
               <Link
-                href="#"
+                href={item.href ?? "#"}
                 className="text-xl font-medium hover:text-primary duration-500 ease-in-out"
               >
                 {item.title}

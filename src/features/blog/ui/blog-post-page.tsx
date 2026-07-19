@@ -108,7 +108,11 @@ export async function BlogPostPage({ slug }: { slug: string }) {
     .select()
     .from(platformPosts)
     .where(
-      and(PUBLISHED_WHERE, eq(platformPosts.category, post.category), ne(platformPosts.id, post.id)),
+      and(
+        PUBLISHED_WHERE,
+        eq(platformPosts.category, post.category),
+        ne(platformPosts.id, post.id),
+      ),
     )
     .orderBy(desc(platformPosts.publishedAt))
     .limit(3);
@@ -149,7 +153,7 @@ export async function BlogPostPage({ slug }: { slug: string }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {post.coverImageUrl && (
-        <div className="mt-16 relative h-72 w-full overflow-hidden md:h-[26rem]">
+        <div className="mt-16 relative h-72 w-full overflow-hidden md:h-104">
           <Image
             src={post.coverImageUrl}
             fill
@@ -159,7 +163,7 @@ export async function BlogPostPage({ slug }: { slug: string }) {
             unoptimized
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent" />
         </div>
       )}
 
