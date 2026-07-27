@@ -11,8 +11,8 @@ interface FooterLink {
 }
 
 const footerLinks: FooterLink[] = [
-  { route: "/page-terms", title: "Terms of Service" },
-  { route: "/page-privacy", title: "Privacy Policy" },
+  { route: "/terms", title: "Terms of Service" },
+  { route: "/privacy", title: "Privacy Policy" },
 ];
 
 const footerCompany: FooterLink[] = [

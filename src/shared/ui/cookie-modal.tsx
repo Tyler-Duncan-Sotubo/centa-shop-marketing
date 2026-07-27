@@ -14,7 +14,7 @@ export default function CookieModal() {
         This website uses cookies to provide you with a great user
         experience. By using it, you accept our{" "}
         <Link
-          href="/page-privacy"
+          href="/privacy"
           className="text-primary font-semibold"
         >
           use of cookies

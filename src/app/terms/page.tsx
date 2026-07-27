@@ -11,7 +11,7 @@ export default function Page() {
       icon={HiOutlineDocumentText}
       label="Legal"
       title="Terms of Service"
-      updated="13 July 2026"
+      updated="27 July 2026"
     >
       <p>
         These Terms of Service (&quot;Terms&quot;) govern your access to and
@@ -93,7 +93,7 @@ export default function Page() {
       <p>
         You are also the data controller for your own customers&apos; data
         collected through your storefront — see our{" "}
-        <a href="/page-privacy">Privacy Policy</a> for how this works.
+        <a href="/privacy">Privacy Policy</a> for how this works.
       </p>
 
       <h2>6. Acceptable use</h2>
@@ -125,7 +125,47 @@ export default function Page() {
         retrieved through the API, including keeping your API keys secure.
       </p>
 
-      <h2>9. Service availability</h2>
+      <h2>9. Mobile app</h2>
+      <p>
+        SalesCenta offers a mobile application (the &quot;App&quot;)
+        distributed through app stores such as Google Play and the Apple
+        App Store. We grant you a limited, non-exclusive, non-transferable,
+        revocable licence to install and use the App on devices you own or
+        control, solely to access the Service under these Terms.
+      </p>
+      <ul>
+        <li>
+          The App may request device permissions — such as camera access
+          for scanning product barcodes, or photo library access for
+          uploading images. These are optional, requested in context, and
+          can be changed at any time in your device settings.
+        </li>
+        <li>
+          If you enable biometric unlock, your fingerprint or face data is
+          handled entirely by your device&apos;s operating system — it
+          never leaves your device and is never sent to us.
+        </li>
+        <li>
+          You can delete your account and associated data directly from
+          the App (More → Delete Account) as well as by contacting us.
+        </li>
+        <li>
+          We may release updates to the App from time to time; some
+          updates may be required for the App to keep working with the
+          Service.
+        </li>
+        <li>
+          These Terms are between you and TXD Agency only — not with
+          Google, Apple, or any other app store operator. App store
+          operators are not responsible for the App or its content,
+          have no obligation to provide maintenance or support for it,
+          and are not liable for any claims relating to it. Your use of
+          the App must also comply with the applicable app store&apos;s
+          terms of service.
+        </li>
+      </ul>
+
+      <h2>10. Service availability</h2>
       <p>
         We aim to keep SalesCenta available and reliable, but we do not
         guarantee uninterrupted access. We may perform maintenance,
@@ -133,7 +173,7 @@ export default function Page() {
         to give notice of anything that materially affects your store.
       </p>
 
-      <h2>10. Limitation of liability</h2>
+      <h2>11. Limitation of liability</h2>
       <p>
         To the fullest extent permitted by law, TXD Agency is not liable
         for indirect, incidental, or consequential damages arising from
@@ -142,7 +182,7 @@ export default function Page() {
         limits liability that cannot be limited under UK law.
       </p>
 
-      <h2>11. Termination</h2>
+      <h2>12. Termination</h2>
       <p>
         You may close your account at any time. We may suspend or
         terminate your access if you breach these Terms, misuse the
@@ -151,7 +191,7 @@ export default function Page() {
         your own customers.
       </p>
 
-      <h2>12. Changes to these Terms</h2>
+      <h2>13. Changes to these Terms</h2>
       <p>
         We may update these Terms from time to time. If we make material
         changes, we&apos;ll make reasonable efforts to notify you before
@@ -159,7 +199,7 @@ export default function Page() {
         effect means you accept the updated Terms.
       </p>
 
-      <h2>13. Governing law</h2>
+      <h2>14. Governing law</h2>
       <p>
         These Terms are governed by the laws of England and Wales. This
         does not remove any statutory protections you&apos;re entitled to
@@ -167,7 +207,7 @@ export default function Page() {
         based.
       </p>
 
-      <h2>14. Contact</h2>
+      <h2>15. Contact</h2>
       <p>
         Questions about these Terms can be sent to{" "}
         <a href="mailto:hello@salescenta.com">hello@salescenta.com</a> or
