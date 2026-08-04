@@ -20,7 +20,7 @@ interface Reason {
 const reasons: Reason[] = [
   {
     icon: HiRocketLaunch,
-    iconColor: "#4032c8",
+    iconColor: "#0050a3",
     bg: "bg-primary/5",
     title: "Get selling, fast and easy.",
     desc: "Launch your online store in no time — and keep the same platform as you add locations, staff, and wholesale buyers, instead of migrating later.",

@@ -18,18 +18,18 @@
    --breakpoint-xl: 1140px;
    --breakpoint-2xl: 1360px;
 
-   /* Colors — matched to admin dashboard brand (#4032c8) */
-   --color-primary: #4032c8;
-   --color-primary-50: #f4f3fc;
-   --color-primary-100: #e4e2f8;
-   --color-primary-200: #c6c2f0;
-   --color-primary-300: #9c95e4;
-   --color-primary-400: #675cd6;
-   --color-primary-500: #4032c8;
-   --color-primary-600: #362aaa;
-   --color-primary-700: #2c2288;
-   --color-primary-800: #211a68;
-   --color-primary-900: #18134c;
+   /* Colors — matched to admin dashboard brand (#0050a3) */
+   --color-primary: #0050a3;
+   --color-primary-50: #ebf5ff;
+   --color-primary-100: #d1e8ff;
+   --color-primary-200: #99cbff;
+   --color-primary-300: #4da4ff;
+   --color-primary-400: #0078f5;
+   --color-primary-500: #0050a3;
+   --color-primary-600: #004286;
+   --color-primary-700: #003265;
+   --color-primary-800: #002348;
+   --color-primary-900: #001831;
 
    /* Font Sizes */
    --text-base: 16px;
@@ -137,7 +137,7 @@
    --card-foreground: oklch(0.145 0 0);
    --popover: oklch(1 0 0);
    --popover-foreground: oklch(0.145 0 0);
-   --primary: #4032c8;
+   --primary: #0050a3;
    --primary-foreground: oklch(0.985 0 0);
    --secondary: oklch(0.97 0 0);
    --secondary-foreground: oklch(0.205 0 0);
