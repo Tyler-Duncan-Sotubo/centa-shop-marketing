@@ -36,22 +36,14 @@ export default function JourneyThread({
     mass: 0.4,
   });
 
-  // A gentle S-curve so the line reads as organic rather than a ruler-straight
-  // divider — drifts left/right across a narrow band roughly under the
-  // section badges, staying subtle at typical content widths.
+  // Kept perfectly straight and centered — the ThreadNode markers in each
+  // section are centered the same way, so a curved path would drift away
+  // from where the dots actually sit. A bend here means the two have to
+  // be kept in exact sync, which isn't worth the fragility for a subtle
+  // background line.
   const width = 40;
   const midX = width / 2;
-  const amplitude = 16;
-  const segments = 8;
-  const points: string[] = [`M ${midX} 0`];
-  for (let i = 1; i <= segments; i++) {
-    const y = (height / segments) * i;
-    const x = midX + (i % 2 === 0 ? amplitude : -amplitude) * 0.5;
-    const prevY = (height / segments) * (i - 1);
-    const cy = (prevY + y) / 2;
-    points.push(`Q ${x} ${cy} ${midX} ${y}`);
-  }
-  const d = points.join(" ");
+  const d = `M ${midX} 0 L ${midX} ${height}`;
 
   if (!height) return null;
 

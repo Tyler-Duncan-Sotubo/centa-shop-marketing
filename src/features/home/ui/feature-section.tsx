@@ -6,14 +6,32 @@ import { IconType } from "react-icons";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { ThreadNode } from "./journey-thread";
 
-const revealVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
-  },
-};
+function textVariants(reverse: boolean) {
+  return {
+    hidden: { opacity: 0, x: reverse ? 40 : -40 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
+    },
+  };
+}
+
+function visualVariants(reverse: boolean) {
+  return {
+    hidden: { opacity: 0, x: reverse ? -40 : 40, scale: 0.97 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 0.65,
+        delay: 0.1,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+  };
+}
 
 export type FeatureTag = { icon: IconType; label: string };
 
@@ -50,7 +68,7 @@ export default function FeatureSection({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.35 }}
-            variants={revealVariants}
+            variants={textVariants(reverse)}
           >
             <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-2">
               {eyebrow}
@@ -87,10 +105,10 @@ export default function FeatureSection({
 
           <motion.div
             className={reverse ? "md:order-1" : ""}
-            initial={{ opacity: 0, y: 24, scale: 0.97 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            variants={visualVariants(reverse)}
           >
             {visual}
           </motion.div>
