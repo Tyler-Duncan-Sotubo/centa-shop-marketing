@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaArrowRight } from "react-icons/fa";
-import { BsCheckCircle } from "react-icons/bs";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import {
   HiOutlineGlobeAlt,
@@ -17,8 +16,7 @@ import {
 import SectionBadge from "@/shared/ui/section-badge";
 import PaymentMethods from "./payment-methods";
 import WebsitesGallery from "./websites-gallery";
-import FeaturesGrid from "./features-grid";
-import InvoicesQuotes from "./invoices-quotes";
+import FeatureJourney from "./feature-journey";
 import Integrations from "./integrations";
 import Faq from "./faq";
 import ContactCta from "./contact-cta";
@@ -163,135 +161,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section
-        className="relative md:py-24 py-16 bg-gray-50 dark:bg-slate-800"
-        id="features"
-      >
+      <section className="relative pt-16 pb-4 md:pt-24" id="features">
         <div className="container relative">
-          <div className="grid grid-cols-1 pb-8 text-center">
-            <SectionBadge icon={HiOutlineSparkles} label="Features" />
-            <h3 className="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
-              Built for how you actually sell
+          <div className="grid grid-cols-1 pb-4 text-center">
+            <SectionBadge icon={HiOutlineSparkles} label="Everything, connected" />
+            <h3 className="mb-4 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
+              One system, every part of the business
             </h3>
-
             <p className="text-slate-400 max-w-xl mx-auto">
-              From a first WhatsApp sale to running multiple stores and
-              wholesale buyers — the same platform, without switching tools
-              or fighting it to keep up.
+              Sales, finance, stock, and marketing don&apos;t live in separate
+              apps here — follow the thread.
             </p>
-          </div>
-
-          <FeaturesGrid />
-        </div>
-
-        <div className="container relative md:mt-24 mt-16">
-          <div className="grid md:grid-cols-2 grid-cols-1 items-center mt-16 gap-7.5">
-            <div className="relative">
-              <div className="md:me-10">
-                <Image
-                  src="/images/saas/merchant.jpg"
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                  alt="Illustration of a person unboxing and setting up their store"
-                />
-              </div>
-              <div className="absolute -bottom-10 inset-e-0 p-6 rounded-lg shadow-md dark:shadow-gray-800 bg-white dark:bg-slate-900 md:w-80 w-60">
-                <h5 className="text-lg font-semibold mb-3">
-                  Setup in progress
-                </h5>
-                <p className="text-slate-400">
-                  We handle the storefront build while you focus on your
-                  products
-                </p>
-                <div className="flex justify-between mt-3 mb-2">
-                  <span className="text-slate-400">Store setup</span>
-                  <span className="text-slate-400">84%</span>
-                </div>
-                <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-1.5">
-                  <div
-                    className="bg-primary h-1.5 rounded-full"
-                    style={{ width: "84%" }}
-                  ></div>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:ms-8 mt-8 md:mt-0">
-              <h4 className="mb-4 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
-                One inventory, every location — <br /> in-store and online
-              </h4>
-              <p className="text-slate-400">
-                A sale at one store, a wholesale order, or a checkout on your
-                website — stock stays accurate everywhere, so nothing gets
-                oversold and nothing needs reconciling by hand.
-              </p>
-
-              <div className="mt-4">
-                <Link
-                  href="/page-aboutus"
-                  className="relative inline-flex items-center font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:inset-e-0 hover:after:inset-e-auto after:bottom-0 after:inset-s-0 after:duration-500 text-primary hover:text-primary after:bg-primary duration-500"
-                >
-                  Find Out More{" "}
-                  <MdKeyboardArrowRight className="text-xl ms-1" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="container relative md:mt-24 mt-16">
-          <div className="grid md:grid-cols-2 grid-cols-1 items-center gap-7.5">
-            <div className="relative order-1 md:order-2">
-              <Image
-                src="/images/hero-img.png"
-                width={0}
-                height={0}
-                sizes="100vw"
-                style={{ width: "100%", height: "auto" }}
-                alt="Customers checking out and browsing products across Instagram, Facebook, WhatsApp, and Google"
-              />
-            </div>
-
-            <div className="lg:me-8 order-2 md:order-1">
-              <h4 className="mb-4 text-2xl leading-normal font-medium">
-                Payments that just work
-              </h4>
-              <p className="text-slate-400">
-                No declined cards from currency mismatches, no waiting for a
-                plugin update — accept the ways your customers already pay.
-              </p>
-              <ul className="list-none text-slate-400 mt-4">
-                <li className="mb-1 flex items-center">
-                  <BsCheckCircle className="text-primary text-base me-2" /> Bank
-                  transfer, confirmed automatically
-                </li>
-                <li className="mb-1 flex items-center">
-                  <BsCheckCircle className="text-primary text-base me-2" />{" "}
-                  Naira pricing, no conversion guesswork
-                </li>
-                <li className="mb-1 flex items-center">
-                  <BsCheckCircle className="text-primary text-base me-2" /> Card
-                  payments alongside it, not instead of it
-                </li>
-              </ul>
-
-              <div className="mt-4">
-                <Link
-                  href="/page-aboutus"
-                  className="relative inline-flex items-center font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:inset-e-0 hover:after:inset-e-auto after:bottom-0 after:inset-s-0 after:duration-500 text-primary hover:text-primary after:bg-primary duration-500"
-                >
-                  Find Out More{" "}
-                  <MdKeyboardArrowRight className="text-xl ms-1" />
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      <InvoicesQuotes />
+      <FeatureJourney />
 
       <section className="relative md:py-24 py-16">
         <Integrations />
