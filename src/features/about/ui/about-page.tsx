@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { HiOutlineHeart } from "react-icons/hi";
 import PageHero from "@/shared/ui/page-hero";
+import { FadeInUp } from "@/shared/ui/motion";
 import ContactCta from "@/features/home/ui/contact-cta";
 import WhyChooseUs from "./why-choose-us";
 
@@ -9,8 +9,6 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        icon={HiOutlineHeart}
-        label="About"
         title={
           <>
             Our business is making <br /> yours a success.
@@ -23,7 +21,7 @@ export default function AboutPage() {
       <section className="relative md:py-24 py-16">
         <div className="container relative">
           <div className="grid md:grid-cols-2 grid-cols-1 items-center gap-7.5">
-            <div className="md:order-1 order-2">
+            <FadeInUp className="md:order-1 order-2">
               <h3 className="mb-4 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
                 Why we exist
               </h3>
@@ -60,9 +58,9 @@ export default function AboutPage() {
                   Get in touch
                 </Link>
               </div>
-            </div>
+            </FadeInUp>
 
-            <div className="relative md:order-2 order-1">
+            <FadeInUp delay={0.15} className="relative md:order-2 order-1">
               <Image
                 src="/illustrations/loving.svg"
                 width={0}
@@ -71,7 +69,7 @@ export default function AboutPage() {
                 style={{ width: "100%", height: "auto" }}
                 alt="Illustration representing care and connection"
               />
-            </div>
+            </FadeInUp>
           </div>
         </div>
       </section>

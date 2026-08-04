@@ -7,13 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaArrowRight } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import {
-  HiOutlineGlobeAlt,
-  HiOutlineSparkles,
-  HiOutlineQuestionMarkCircle,
-} from "react-icons/hi";
 
-import SectionBadge from "@/shared/ui/section-badge";
 import PaymentMethods from "./payment-methods";
 import WebsitesGallery from "./websites-gallery";
 import FeatureJourney from "./feature-journey";
@@ -138,12 +132,12 @@ export default function HomePage() {
       <section className="relative md:py-24 py-16">
         <div className="container relative">
           <div className="grid grid-cols-1 pb-8 text-center">
-            <SectionBadge icon={HiOutlineGlobeAlt} label="Showcase" />
-            <h3 className="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
-              Websites built on SalesCenta
+            <h3 className="mb-4 md:text-5xl text-3xl leading-tight font-bold max-w-2xl mx-auto">
+              Real stores, running on SalesCenta right now
             </h3>
-            <p className="text-slate-400 max-w-xl mx-auto">
-              A few of the stores already selling with us.
+            <p className="text-slate-400 text-lg max-w-xl mx-auto">
+              From boutique retailers to wholesale suppliers — a few of the
+              businesses already selling with us, live today.
             </p>
           </div>
 
@@ -161,16 +155,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative pt-16 pb-4 md:pt-24" id="features">
+      <section className="relative pt-16 pb-4 md:pt-28" id="features">
         <div className="container relative">
           <div className="grid grid-cols-1 pb-4 text-center">
-            <SectionBadge icon={HiOutlineSparkles} label="Everything, connected" />
-            <h3 className="mb-4 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
+            <h3 className="mb-4 md:text-6xl text-4xl leading-tight font-bold max-w-3xl mx-auto">
               One system, every part of the business
             </h3>
-            <p className="text-slate-400 text-lg max-w-xl mx-auto">
-              Sales, finance, stock, and marketing don&apos;t live in separate
-              apps here — follow the thread.
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+              Sales, finance, stock, marketing, and your storefront don&apos;t
+              live in nine separate apps here — they&apos;re one connected
+              system. Follow the thread down to see how it fits together.
             </p>
           </div>
         </div>
@@ -246,13 +240,13 @@ export default function HomePage() {
       <section className="relative md:py-24 py-16" id="faq">
         <div className="container relative">
           <div className="grid grid-cols-1 pb-8 text-center">
-            <SectionBadge icon={HiOutlineQuestionMarkCircle} label="FAQ" />
-            <h3 className="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">
-              Frequently Asked Questions
+            <h3 className="mb-4 md:text-5xl text-3xl leading-tight font-bold max-w-2xl mx-auto">
+              Questions merchants actually ask us
             </h3>
-            <p className="text-slate-400 max-w-xl mx-auto">
-              Everything you need to know before you get started with
-              SalesCenta.
+            <p className="text-slate-400 text-lg max-w-xl mx-auto">
+              Everything you need to know before you get started —
+              pricing, setup, WhatsApp checkout, and what happens after
+              your free trial.
             </p>
           </div>
 

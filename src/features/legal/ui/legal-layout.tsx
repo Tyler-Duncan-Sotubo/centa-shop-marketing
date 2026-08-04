@@ -1,22 +1,17 @@
-import { IconType } from "react-icons";
 import PageHero from "@/shared/ui/page-hero";
 
 export default function LegalLayout({
-  icon,
-  label,
   title,
   updated,
   children,
 }: {
-  icon: IconType;
-  label: string;
   title: string;
   updated: string;
   children: React.ReactNode;
 }) {
   return (
     <>
-      <PageHero icon={icon} label={label} title={title}>
+      <PageHero title={title}>
         <p className="text-slate-400 text-lg mt-4">Last updated: {updated}</p>
       </PageHero>
 

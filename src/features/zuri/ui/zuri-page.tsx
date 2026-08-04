@@ -1,8 +1,6 @@
 "use client";
-import { useEffect } from "react";
 import Link from "next/link";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 import { IconType } from "react-icons";
 import {
@@ -12,8 +10,9 @@ import {
   HiOutlineShieldCheck,
   HiOutlineDeviceMobile,
 } from "react-icons/hi";
+import { FadeInUp, FadeInStagger, StaggerItem } from "@/shared/ui/motion";
 
-import SectionBadge from "@/shared/ui/section-badge";
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 const capabilities: {
   icon: IconType;
@@ -61,10 +60,6 @@ const sampleChat: { role: "user" | "zuri"; text: string }[] = [
 ];
 
 export default function ZuriPage() {
-  useEffect(() => {
-    AOS.init({ duration: 700 });
-  }, []);
-
   return (
     <>
       {/* Hero */}
@@ -72,8 +67,12 @@ export default function ZuriPage() {
         <div className="container relative">
           <div className="relative grid md:grid-cols-12 grid-cols-1 items-center gap-7.5">
             <div className="md:col-span-6">
-              <div className="md:me-6" data-aos="fade-up">
-                <SectionBadge icon={HiOutlineSparkles} label="Meet Zuri" align="left" />
+              <motion.div
+                className="md:me-6"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: EASE }}
+              >
                 <h1 className="font-bold capitalize lg:leading-normal leading-normal text-5xl lg:text-6xl mb-5 text-black dark:text-white">
                   Your business,{" "}
                   <span className="after:absolute after:inset-e-0 after:inset-s-0 after:bottom-3 after:lg:h-3 after:h-2 after:w-auto after:rounded-md after:bg-primary/30 relative text-primary">
@@ -102,12 +101,16 @@ export default function ZuriPage() {
                     See pricing
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Chat mockup */}
-            <div className="md:col-span-6" data-aos="zoom-in" data-aos-delay="200">
-              <div className="max-w-md mx-auto rounded-2xl shadow-xl dark:shadow-gray-800 bg-white dark:bg-slate-900 border border-gray-100 dark:border-gray-800 overflow-hidden">
+            <div className="md:col-span-6">
+              <motion.div
+                initial={{ opacity: 0, y: 24, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
+                className="max-w-md mx-auto rounded-2xl shadow-xl dark:shadow-gray-800 bg-white dark:bg-slate-900 border border-gray-100 dark:border-gray-800 overflow-hidden">
                 <div className="flex items-center gap-3 px-5 py-4 border-b border-gray-100 dark:border-gray-800">
                   <div className="size-9 rounded-full bg-primary/10 flex items-center justify-center">
                     <HiOutlineSparkles className="text-primary text-xl" />
@@ -135,7 +138,7 @@ export default function ZuriPage() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -144,24 +147,25 @@ export default function ZuriPage() {
       {/* Capabilities */}
       <section className="relative md:py-24 py-16 bg-gray-50 dark:bg-slate-800">
         <div className="container relative">
-          <div className="grid grid-cols-1 pb-8 text-center">
-            <SectionBadge icon={HiOutlineSparkles} label="What Zuri does" />
-            <h2 className="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
+          <FadeInUp className="grid grid-cols-1 pb-8 text-center">
+            <h2 className="mb-4 md:text-5xl text-3xl leading-tight font-bold max-w-2xl mx-auto">
               Like having an analyst on staff
             </h2>
-            <p className="text-slate-400 max-w-xl mx-auto">
-              No dashboards to learn, no reports to build. Just ask.
+            <p className="text-slate-400 text-lg max-w-xl mx-auto">
+              No dashboards to learn, no reports to build. Ask Zuri a
+              question in plain language and get a straight answer, sourced
+              from your own store data.
             </p>
-          </div>
+          </FadeInUp>
 
-          <div className="grid lg:grid-cols-2 grid-cols-1 mt-4 gap-7.5">
+          <FadeInStagger className="grid lg:grid-cols-2 grid-cols-1 mt-4 gap-7.5">
             {capabilities.map((item) => {
               const ItemIcon = item.icon;
               return (
-                <div
+                <StaggerItem
                   key={item.title}
+                  hover
                   className="flex gap-5 p-6 rounded-xl bg-white dark:bg-slate-900 shadow-sm dark:shadow-gray-800"
-                  data-aos="fade-up"
                 >
                   <div className="shrink-0 flex items-center justify-center size-14 rounded-full bg-gray-50 dark:bg-slate-800">
                     <ItemIcon className="w-7 h-7" style={{ color: item.color }} />
@@ -170,16 +174,16 @@ export default function ZuriPage() {
                     <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
                     <p className="text-slate-400">{item.desc}</p>
                   </div>
-                </div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </FadeInStagger>
         </div>
       </section>
 
       {/* CTA */}
       <section className="relative md:py-24 py-16">
-        <div className="container relative text-center">
+        <FadeInUp className="container relative text-center">
           <h2 className="mb-4 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
             Stop digging through reports. Start asking.
           </h2>
@@ -193,7 +197,7 @@ export default function ZuriPage() {
           >
             Start your free trial <FaArrowRight className="inline-block ml-2" />
           </Link>
-        </div>
+        </FadeInUp>
       </section>
     </>
   );

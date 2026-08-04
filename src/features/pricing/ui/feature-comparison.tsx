@@ -1,4 +1,5 @@
 import { BsCheckCircle, BsDashCircle } from "react-icons/bs";
+import { FadeInUp } from "@/shared/ui/motion";
 
 interface FeatureRow {
   label: string;
@@ -52,7 +53,7 @@ function Cell({ value }: { value: string | boolean }) {
 
 export default function FeatureComparison() {
   return (
-    <div className="overflow-x-auto">
+    <FadeInUp className="overflow-x-auto">
       <table className="w-full min-w-175 text-center border-collapse">
         <thead>
           <tr>
@@ -91,6 +92,6 @@ export default function FeatureComparison() {
           ))}
         </tbody>
       </table>
-    </div>
+    </FadeInUp>
   );
 }

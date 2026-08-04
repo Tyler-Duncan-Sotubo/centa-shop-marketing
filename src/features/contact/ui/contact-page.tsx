@@ -5,6 +5,7 @@ import { FiUser, FiMail, FiBook, FiMessageCircle } from "react-icons/fi";
 import { BsWhatsapp } from "react-icons/bs";
 import { HiOutlineMail, HiOutlineLocationMarker } from "react-icons/hi";
 import PageHero from "@/shared/ui/page-hero";
+import { FadeInUp, FadeInStagger, StaggerItem } from "@/shared/ui/motion";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -12,16 +13,14 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        icon={FiMessageCircle}
-        label="Contact"
         title="Talk to us"
         subtext="Questions about pricing, migrating your store, or anything else — we're happy to help."
       />
 
       <section className="relative md:py-24 py-16">
         <div className="container relative">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-7.5 max-w-5xl mx-auto mb-16">
-            <div className="text-center px-6">
+          <FadeInStagger className="grid grid-cols-1 md:grid-cols-3 gap-7.5 max-w-5xl mx-auto mb-16">
+            <StaggerItem className="text-center px-6">
               <div className="w-20 h-20 bg-primary/5 text-primary rounded-xl text-3xl flex align-middle justify-center items-center shadow-xs dark:shadow-gray-800 mx-auto">
                 <BsWhatsapp className="w-7 h-7" />
               </div>
@@ -40,9 +39,9 @@ export default function ContactPage() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </StaggerItem>
 
-            <div className="text-center px-6">
+            <StaggerItem className="text-center px-6">
               <div className="w-20 h-20 bg-primary/5 text-primary rounded-xl text-3xl flex align-middle justify-center items-center shadow-xs dark:shadow-gray-800 mx-auto">
                 <HiOutlineMail className="w-7 h-7" />
               </div>
@@ -60,9 +59,9 @@ export default function ContactPage() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </StaggerItem>
 
-            <div className="text-center px-6">
+            <StaggerItem className="text-center px-6">
               <div className="w-20 h-20 bg-primary/5 text-primary rounded-xl text-3xl flex align-middle justify-center items-center shadow-xs dark:shadow-gray-800 mx-auto">
                 <HiOutlineLocationMarker className="w-7 h-7" />
               </div>
@@ -76,10 +75,10 @@ export default function ContactPage() {
                   Croydon, UK
                 </p>
               </div>
-            </div>
-          </div>
+            </StaggerItem>
+          </FadeInStagger>
 
-          <div className="grid md:grid-cols-2 grid-cols-1 gap-7.5 items-stretch">
+          <FadeInUp className="grid md:grid-cols-2 grid-cols-1 gap-7.5 items-stretch">
             <div className="rounded-md overflow-hidden shadow-sm dark:shadow-gray-800 min-h-100">
               <iframe
                 title="TXD Agency office location"
@@ -183,7 +182,7 @@ export default function ContactPage() {
                 </form>
               )}
             </div>
-          </div>
+          </FadeInUp>
         </div>
       </section>
     </>

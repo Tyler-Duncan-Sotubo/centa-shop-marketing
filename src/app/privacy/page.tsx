@@ -1,4 +1,3 @@
-import { HiOutlineShieldCheck } from "react-icons/hi";
 import LegalLayout from "@/features/legal/ui/legal-layout";
 
 export const metadata = {
@@ -7,12 +6,7 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <LegalLayout
-      icon={HiOutlineShieldCheck}
-      label="Legal"
-      title="Privacy Policy"
-      updated="13 July 2026"
-    >
+    <LegalLayout title="Privacy Policy" updated="13 July 2026">
       <p>
         This Privacy Policy explains how TXD Agency (&quot;we&quot;,
         &quot;us&quot;, &quot;our&quot;), based in Croydon, United Kingdom,

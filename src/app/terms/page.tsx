@@ -1,4 +1,3 @@
-import { HiOutlineDocumentText } from "react-icons/hi";
 import LegalLayout from "@/features/legal/ui/legal-layout";
 
 export const metadata = {
@@ -7,12 +6,7 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <LegalLayout
-      icon={HiOutlineDocumentText}
-      label="Legal"
-      title="Terms of Service"
-      updated="27 July 2026"
-    >
+    <LegalLayout title="Terms of Service" updated="27 July 2026">
       <p>
         These Terms of Service (&quot;Terms&quot;) govern your access to and
         use of SalesCenta (the &quot;Service&quot;), operated by TXD Agency

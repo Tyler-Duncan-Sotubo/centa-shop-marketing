@@ -2,8 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { SiGoogleanalytics, SiMeta, SiZoho, SiTiktok, SiPinterest } from "react-icons/si";
 import { IconType } from "react-icons";
-import { HiLightningBolt } from "react-icons/hi";
-import SectionBadge from "@/shared/ui/section-badge";
 
 interface IntegrationNode {
   label: string;
@@ -102,12 +100,13 @@ export default function Integrations() {
   return (
     <div className="container relative">
       <div className="grid grid-cols-1 text-center pb-8">
-        <SectionBadge icon={HiLightningBolt} label="Integrations" />
-        <h3 className="mb-4 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
+        <h3 className="mb-4 md:text-6xl text-4xl leading-tight font-bold max-w-3xl mx-auto">
           Connects with what you already use
         </h3>
-        <p className="text-slate-400 max-w-xl mx-auto">
-          Payments, analytics, and accounting — wired in, not bolted on.
+        <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          Payments, analytics, and accounting — wired in from day one, not
+          bolted on as an afterthought like every other platform makes you
+          do.
         </p>
 
         <div className="mt-6">

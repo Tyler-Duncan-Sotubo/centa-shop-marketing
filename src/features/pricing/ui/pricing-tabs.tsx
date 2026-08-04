@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BsCheckCircle } from "react-icons/bs";
+import { FadeInStagger, StaggerItem } from "@/shared/ui/motion";
 
 interface Tier {
   name: string;
@@ -177,11 +178,13 @@ export default function PricingTabs() {
       </ul>
 
       <div className="mt-6">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 mt-8 gap-7.5">
+        <FadeInStagger className="grid lg:grid-cols-4 md:grid-cols-2 mt-8 gap-7.5">
           {tiers.map((tier) => (
-            <TierCard key={tier.name} tier={tier} />
+            <StaggerItem key={tier.name} hover>
+              <TierCard tier={tier} />
+            </StaggerItem>
           ))}
-        </div>
+        </FadeInStagger>
       </div>
     </div>
   );

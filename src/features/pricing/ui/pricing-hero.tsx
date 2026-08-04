@@ -1,11 +1,8 @@
-import { HiOutlineCurrencyDollar } from "react-icons/hi";
 import PageHero from "@/shared/ui/page-hero";
 
 export default function PricingHero() {
   return (
     <PageHero
-      icon={HiOutlineCurrencyDollar}
-      label="Our Comfortable Rates"
       title={
         <>
           One price. Every way your <br /> customers pay.

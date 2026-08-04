@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { FadeInUp } from "@/shared/ui/motion";
 
 const faqItems: { title: string; content: string }[] = [
   {
@@ -149,7 +150,7 @@ export default function PricingFaq() {
   const rightColumn = indexed.slice(half);
 
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 md:gap-7.5">
+    <FadeInUp className="grid md:grid-cols-2 grid-cols-1 md:gap-7.5">
       <AccordionColumn
         items={leftColumn}
         activeIndex={activeIndex}
@@ -160,6 +161,6 @@ export default function PricingFaq() {
         activeIndex={activeIndex}
         onToggle={toggleAccordion}
       />
-    </div>
+    </FadeInUp>
   );
 }

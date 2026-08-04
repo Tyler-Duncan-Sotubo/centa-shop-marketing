@@ -1,9 +1,4 @@
-import {
-  HiOutlineCurrencyDollar,
-  HiOutlineQuestionMarkCircle,
-  HiOutlineTable,
-} from "react-icons/hi";
-import SectionBadge from "@/shared/ui/section-badge";
+import { FadeInUp } from "@/shared/ui/motion";
 import ContactCta from "@/features/home/ui/contact-cta";
 import PricingHero from "./pricing-hero";
 import PricingHighlights from "./pricing-highlights";
@@ -36,43 +31,43 @@ export default function PricingPage() {
 
       <section className="relative md:py-24 py-16">
         <div className="container relative">
-          <div className="grid grid-cols-1 pb-8 text-center">
-            <SectionBadge icon={HiOutlineCurrencyDollar} label="Pricing" />
-            <h3 className="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">
-              Choose Pricing Plan
+          <FadeInUp className="grid grid-cols-1 pb-8 text-center">
+            <h3 className="mb-4 md:text-5xl text-3xl leading-tight font-bold max-w-2xl mx-auto">
+              Choose your plan
             </h3>
-            <p className="text-slate-400 max-w-xl mx-auto">
-              Simple plans that grow with your store.
+            <p className="text-slate-400 text-lg max-w-xl mx-auto">
+              Simple, transparent plans that grow with your store — no
+              surprise fees, no long-term contract.
             </p>
-          </div>
+          </FadeInUp>
 
           <PricingTabs />
         </div>
 
         <div className="container relative md:py-24 py-16">
-          <div className="grid grid-cols-1 pb-8 text-center">
-            <SectionBadge icon={HiOutlineTable} label="Compare Plans" />
-            <h3 className="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">
+          <FadeInUp className="grid grid-cols-1 pb-8 text-center">
+            <h3 className="mb-4 md:text-5xl text-3xl leading-tight font-bold max-w-2xl mx-auto">
               Every feature, side by side
             </h3>
-            <p className="text-slate-400 max-w-xl mx-auto">
-              See exactly what's included on each plan before you choose.
+            <p className="text-slate-400 text-lg max-w-xl mx-auto">
+              See exactly what&apos;s included on each plan before you
+              choose — no guessing, no fine print.
             </p>
-          </div>
+          </FadeInUp>
 
           <FeatureComparison />
         </div>
 
         <div className="container relative md:py-24 py-16">
-          <div className="grid grid-cols-1 pb-8 text-center">
-            <SectionBadge icon={HiOutlineQuestionMarkCircle} label="FAQ" />
-            <h3 className="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">
-              Frequently Asked Questions
+          <FadeInUp className="grid grid-cols-1 pb-8 text-center">
+            <h3 className="mb-4 md:text-5xl text-3xl leading-tight font-bold max-w-2xl mx-auto">
+              Questions about pricing
             </h3>
-            <p className="text-slate-400 max-w-xl mx-auto">
-              Everything you need to know before you get started.
+            <p className="text-slate-400 text-lg max-w-xl mx-auto">
+              Everything you need to know before you get started, straight
+              from the plans themselves.
             </p>
-          </div>
+          </FadeInUp>
 
           <PricingFaq />
         </div>

@@ -1,9 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { HiOutlineCode, HiOutlineKey, HiOutlineLightningBolt } from "react-icons/hi";
 import { IconType } from "react-icons";
-import SectionBadge from "@/shared/ui/section-badge";
 import PageHeroShell from "@/shared/ui/page-hero-shell";
+import { FadeInUp, FadeInStagger, StaggerItem } from "@/shared/ui/motion";
 import ContactCta from "@/features/home/ui/contact-cta";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 interface Capability {
   icon: IconType;
@@ -38,12 +43,15 @@ export default function DeveloperPage() {
     <>
       <PageHeroShell>
         <div className="grid md:grid-cols-2 grid-cols-1 items-center gap-7.5 mt-10">
-          <div>
-            <SectionBadge icon={HiOutlineCode} label="Developer" align="left" />
-            <h3 className="mt-2 md:text-4xl text-2xl md:leading-normal leading-normal font-bold text-black dark:text-white">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE }}
+          >
+            <h3 className="md:text-6xl text-4xl leading-tight font-bold text-black dark:text-white max-w-2xl">
               Build on top of your store
             </h3>
-            <p className="text-slate-400 text-lg max-w-xl mt-4">
+            <p className="text-slate-400 text-xl max-w-2xl mt-5">
               A real API and webhooks, available on Pro and Enterprise
               plans — connect your own tools and workflows to your store
               data.
@@ -57,34 +65,40 @@ export default function DeveloperPage() {
                 See Pro plan
               </Link>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="rounded-lg bg-slate-900 p-6 shadow-lg overflow-x-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 24, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
+            className="rounded-lg bg-slate-900 p-6 shadow-lg overflow-x-auto"
+          >
             <pre className="text-sm text-emerald-400">
               <code>{codeSample}</code>
             </pre>
-          </div>
+          </motion.div>
         </div>
       </PageHeroShell>
 
       <section className="relative md:py-24 py-16">
         <div className="container relative">
-          <div className="grid grid-cols-1 pb-8 text-center">
+          <FadeInUp className="grid grid-cols-1 pb-8 text-center">
             <h3 className="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
               What you can build
             </h3>
             <p className="text-slate-400 max-w-xl mx-auto">
               Everything your storefront can do, your own tools can do too.
             </p>
-          </div>
+          </FadeInUp>
 
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7.5 mt-4">
+          <FadeInStagger className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7.5 mt-4">
             {capabilities.map((item) => {
               const Icon = item.icon;
               return (
-                <div
+                <StaggerItem
                   key={item.title}
-                  className="group relative lg:px-6 mt-4 transition duration-500 ease-in-out rounded-xl overflow-hidden text-center"
+                  hover
+                  className="group relative lg:px-6 mt-4 rounded-xl overflow-hidden text-center"
                 >
                   <div className="flex items-center justify-center size-18 mx-auto rounded-full bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800">
                     <Icon className="w-8 h-8 text-primary" />
@@ -96,10 +110,10 @@ export default function DeveloperPage() {
                       {item.desc}
                     </p>
                   </div>
-                </div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </FadeInStagger>
         </div>
 
         <ContactCta className="container relative md:mt-24 mt-16" />

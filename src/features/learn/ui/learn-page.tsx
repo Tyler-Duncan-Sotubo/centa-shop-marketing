@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { and, desc, eq, sql } from "drizzle-orm";
-import { HiOutlineBookOpen } from "react-icons/hi";
 import PageHero from "@/shared/ui/page-hero";
 import ContactCta from "@/features/home/ui/contact-cta";
 import { db } from "@/shared/db/client";
@@ -93,8 +92,6 @@ export default async function LearnPage() {
   return (
     <>
       <PageHero
-        icon={HiOutlineBookOpen}
-        label="Learn"
         title="Guides for growing your store"
         subtext="Practical advice on selling, payments, and running your business online — plus the latest feature updates and real stories from merchants using SalesCenta."
       />

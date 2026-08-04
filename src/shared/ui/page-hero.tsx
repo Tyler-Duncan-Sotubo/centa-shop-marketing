@@ -1,17 +1,19 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { IconType } from "react-icons";
-import SectionBadge from "./section-badge";
 import PageHeroShell from "./page-hero-shell";
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 export default function PageHero({
-  icon,
-  label,
   title,
   subtext,
   align = "center",
   children,
 }: {
-  icon: IconType;
-  label: string;
+  icon?: IconType;
+  label?: string;
   title: React.ReactNode;
   subtext?: React.ReactNode;
   align?: "center" | "left";
@@ -24,18 +26,27 @@ export default function PageHero({
           align === "center" ? "text-center" : ""
         }`}
       >
-        <SectionBadge icon={icon} label={label} align={align} />
-        <h3 className="mt-2 md:text-4xl text-2xl md:leading-normal leading-normal font-bold text-black dark:text-white">
+        <motion.h3
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className={`md:text-6xl text-4xl leading-tight font-bold text-black dark:text-white ${
+            align === "center" ? "max-w-3xl mx-auto" : "max-w-3xl"
+          }`}
+        >
           {title}
-        </h3>
+        </motion.h3>
         {subtext && (
-          <p
-            className={`text-slate-400 text-xl mt-4 ${
-              align === "center" ? "max-w-xl mx-auto" : "max-w-2xl"
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.12, ease: EASE }}
+            className={`text-slate-400 text-xl mt-5 ${
+              align === "center" ? "max-w-2xl mx-auto" : "max-w-2xl"
             }`}
           >
             {subtext}
-          </p>
+          </motion.p>
         )}
         {children}
       </div>

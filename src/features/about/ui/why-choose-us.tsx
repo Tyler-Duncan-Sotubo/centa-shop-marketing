@@ -6,6 +6,7 @@ import {
   HiOutlineOfficeBuilding,
   HiOutlineChatAlt2,
 } from "react-icons/hi";
+import { FadeInUp, FadeInStagger, StaggerItem } from "@/shared/ui/motion";
 
 interface Reason {
   icon: IconType;
@@ -60,18 +61,19 @@ export default function WhyChooseUs() {
   return (
     <section className="relative md:py-24 py-16 bg-gray-50 dark:bg-slate-800">
       <div className="container relative">
-        <div className="grid grid-cols-1 pb-8">
+        <FadeInUp className="grid grid-cols-1 pb-8">
           <h3 className="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">
             Why choose SalesCenta
           </h3>
-        </div>
+        </FadeInUp>
 
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-7.5">
+        <FadeInStagger className="grid md:grid-cols-2 grid-cols-1 gap-7.5">
           {reasons.map((reason) => {
             const Icon = reason.icon;
             return (
-              <div
+              <StaggerItem
                 key={reason.title}
+                hover
                 className={`p-8 rounded-xl ${reason.bg}`}
               >
                 <div className="flex items-center justify-center size-16 rounded-full bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800">
@@ -94,10 +96,10 @@ export default function WhyChooseUs() {
                     {reason.cta}
                   </Link>
                 </div>
-              </div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </FadeInStagger>
       </div>
     </section>
   );

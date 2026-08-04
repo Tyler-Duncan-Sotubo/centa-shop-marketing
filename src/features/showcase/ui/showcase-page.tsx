@@ -1,4 +1,3 @@
-import { HiOutlineGlobeAlt } from "react-icons/hi";
 import PageHero from "@/shared/ui/page-hero";
 import ContactCta from "@/features/home/ui/contact-cta";
 import WebsitesGallery from "@/features/home/ui/websites-gallery";
@@ -7,8 +6,6 @@ export default function ShowcasePage() {
   return (
     <>
       <PageHero
-        icon={HiOutlineGlobeAlt}
-        label="Showcase"
         title="Real stores, built on SalesCenta"
         subtext="A look at the storefronts already selling with us — real merchants using WhatsApp checkout, bank transfer, and a branded storefront to run their business. Browse a few of them below to see what's possible when you launch on SalesCenta."
         align="left"
