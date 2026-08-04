@@ -18,6 +18,7 @@ import SectionBadge from "@/shared/ui/section-badge";
 import PaymentMethods from "./payment-methods";
 import WebsitesGallery from "./websites-gallery";
 import FeaturesGrid from "./features-grid";
+import InvoicesQuotes from "./invoices-quotes";
 import Integrations from "./integrations";
 import Faq from "./faq";
 import ContactCta from "./contact-cta";
@@ -289,6 +290,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <InvoicesQuotes />
 
       <section className="relative md:py-24 py-16">
         <Integrations />
