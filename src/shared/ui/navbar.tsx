@@ -82,11 +82,18 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
+          <Link
+            href="https://app.salescenta.com/login"
+            className="hidden lg:inline-flex items-center px-4 py-2 text-sm font-semibold tracking-wide rounded-full border border-gray-200 dark:border-gray-800 text-slate-700 hover:border-primary hover:text-primary dark:text-gray-300 transition-colors"
+          >
+            Sign in
+          </Link>
+
           <ul className="buy-button hidden lg:block list-none space-x-1 mb-0 static! float-none!">
             <li className="inline mb-0">
               <Link
                 href="https://app.salescenta.com/signup"
-                className="py-2 px-5 inline-flex items-center font-semibold tracking-wide align-middle duration-500 text-base text-center rounded-full bg-primary hover:bg-primary-700 border border-primary hover:border-primary-700 text-white"
+                className="py-2 px-5 inline-flex items-center font-semibold tracking-wide align-middle duration-500 text-sm text-center rounded-full bg-primary hover:bg-primary-700 border border-primary hover:border-primary-700 text-white"
               >
                 Start free trial
               </Link>
@@ -160,13 +167,20 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="border-t border-gray-100 px-5 py-4 dark:border-gray-800">
+          <div className="border-t border-gray-100 px-5 py-4 dark:border-gray-800 space-y-2">
             <Link
               href="https://app.salescenta.com/signup"
               onClick={() => setIsMenu(false)}
-              className="block w-full rounded-full bg-primary py-2.5 text-center font-semibold tracking-wide text-white transition-colors duration-500 hover:bg-primary-700"
+              className="block w-full rounded-full bg-primary py-2 px-4 text-center text-sm font-semibold tracking-wide text-white transition-colors duration-500 hover:bg-primary-700"
             >
               Start free trial
+            </Link>
+            <Link
+              href="https://app.salescenta.com/login"
+              onClick={() => setIsMenu(false)}
+              className="block w-full rounded-full border border-gray-200 dark:border-gray-800 py-2.5 text-center text-sm font-semibold tracking-wide text-slate-700 dark:text-gray-300 transition-colors duration-500 hover:border-primary hover:text-primary"
+            >
+              Sign in
             </Link>
           </div>
         </div>
