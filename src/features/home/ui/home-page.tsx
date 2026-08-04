@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaArrowRight } from "react-icons/fa";
@@ -22,6 +23,29 @@ import Faq from "./faq";
 import ContactCta from "./contact-cta";
 import Testimonials from "./testimonials";
 
+const heroTextVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
+  },
+};
+
+const heroImageVariants = {
+  hidden: { opacity: 0, y: 32, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      delay: 0.15,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  },
+};
+
 export default function HomePage() {
   useEffect(() => {
     AOS.init({ duration: 700 });
@@ -33,7 +57,12 @@ export default function HomePage() {
         <div className="container relative">
           <div className="relative grid md:grid-cols-12 grid-cols-1 items-center  gap-7.5">
             <div className="md:col-span-6">
-              <div className="md:me-6" data-aos="fade-up">
+              <motion.div
+                className="md:me-6"
+                initial="hidden"
+                animate="visible"
+                variants={heroTextVariants}
+              >
                 <h4 className="font-bold capitalize lg:leading-normal leading-normal text-5xl lg:text-6xl mb-5 text-black dark:text-white relative">
                   Built to grow with you, not{" "}
                   <span className="after:absolute after:inset-e-0 after:inset-s-0 after:bottom-3 after:lg:h-3 after:h-2 after:w-auto after:rounded-md after:bg-primary/30 relative text-primary">
@@ -62,26 +91,38 @@ export default function HomePage() {
                     See pricing
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             <div className="md:col-span-6">
-              <div
-                className="relative after:content-[''] after:absolute after:md:bottom-12 after:-bottom-20 lg:after:inset-s-0 md:after:-inset-s-20 after:-inset-s-24
-                        after:shadow-2xl after:shadow-primary/5 after:-z-1 ltr:after:rotate-130 rtl:after:-rotate-130 after:w-300 after:md:h-220 after:h-120 after:rounded-[20rem]"
-                data-aos="zoom-in"
-                data-aos-delay="200"
+              <motion.div
+                className="relative"
+                initial="hidden"
+                animate="visible"
+                variants={heroImageVariants}
               >
-                <Image
-                  src="/images/hero-img.png"
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "700px", height: "auto" }}
-                  className="lg:max-w-none md:max-w-md"
-                  alt=""
+                <div
+                  className="absolute -inset-4 md:-inset-6 rounded-3xl bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-2xl -z-1"
+                  aria-hidden
                 />
-              </div>
+                <div className="relative rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-slate-900 shadow-2xl shadow-primary/10 overflow-hidden">
+                  <div className="flex items-center gap-1.5 px-4 py-3 border-b border-gray-100 dark:border-gray-800">
+                    <span className="size-2.5 rounded-full bg-red-400/70" />
+                    <span className="size-2.5 rounded-full bg-amber-400/70" />
+                    <span className="size-2.5 rounded-full bg-emerald-400/70" />
+                  </div>
+                  <Image
+                    src="/images/saas/home-stat.png"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{ width: "100%", height: "auto" }}
+                    className="block"
+                    alt="SalesCenta dashboard showing sales across walk-in, online, and POS channels"
+                    priority
+                  />
+                </div>
+              </motion.div>
             </div>
 
             <div className="overflow-hidden after:content-[''] after:absolute after:size-32 after:bg-primary/5 after:top-16 after:inset-s-0 after:-z-1 after:rounded-3xl after:animate-[spin_10s_linear_infinite]"></div>
@@ -203,13 +244,12 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 grid-cols-1 items-center gap-7.5">
             <div className="relative order-1 md:order-2">
               <Image
-                src="/images/saas/home-stat.png"
+                src="/images/hero-img.png"
                 width={0}
                 height={0}
                 sizes="100vw"
                 style={{ width: "100%", height: "auto" }}
-                className="rounded-lg shadow-md dark:shadow-gray-800"
-                alt=""
+                alt="Customers checking out and browsing products across Instagram, Facebook, WhatsApp, and Google"
               />
             </div>
 

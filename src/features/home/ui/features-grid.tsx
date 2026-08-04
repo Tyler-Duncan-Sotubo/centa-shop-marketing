@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { BsWhatsapp } from "react-icons/bs";
 import { IconType } from "react-icons";
 import {
@@ -57,15 +58,38 @@ const features: Feature[] = [
   },
 ];
 
+const gridVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
+  },
+};
+
 export default function FeaturesGrid() {
   return (
-    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-4 gap-7.5">
+    <motion.div
+      className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-4 gap-7.5"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={gridVariants}
+    >
       {features.map((item) => {
         const ItemIcon = item.icon;
         return (
-          <div
+          <motion.div
             key={item.title}
-            className="group relative lg:px-6 mt-4 transition duration-500 ease-in-out rounded-xl overflow-hidden text-center"
+            variants={cardVariants}
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="group relative lg:px-6 mt-4 rounded-xl overflow-hidden text-center"
           >
             <div className="flex items-center justify-center size-18 mx-auto rounded-full bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800">
               <ItemIcon className="w-8 h-8" style={{ color: item.color }} />
@@ -82,9 +106,9 @@ export default function FeaturesGrid() {
                 {item.desc}
               </p>
             </div>
-          </div>
+          </motion.div>
         );
       })}
-    </div>
+    </motion.div>
   );
 }
