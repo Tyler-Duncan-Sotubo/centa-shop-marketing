@@ -16,7 +16,7 @@ export default function AboutPage() {
             Our business is making <br /> yours a success.
           </>
         }
-        subtext="We built SalesCenta to help Nigerian merchants start, manage, and grow a real online business — without forcing them into tools built for a market that isn't theirs. We exist so that selling on WhatsApp and getting paid by bank transfer isn't a workaround, it's the product."
+        subtext="We built SalesCenta to help Nigerian merchants start, manage, and grow a real business — without forcing them into tools built for a market that isn't theirs, and without forcing them to switch platforms the moment they open a second store or take their first wholesale order."
         align="left"
       />
 
@@ -37,18 +37,19 @@ export default function AboutPage() {
                 Most Nigerian merchants already sell on WhatsApp and get paid by
                 bank transfer. So SalesCenta was built the other way round:
                 WhatsApp checkout, bank transfer, and Naira pricing from day one
-                — with a real storefront, real inventory, and real team
-                management behind it, not a workaround.
+                — with a real storefront, multi-location inventory, POS, and
+                wholesale quoting behind it, not a workaround bolted on later.
               </p>
               <p className="text-slate-400 mt-4">
                 That means no fighting a platform that wasn&apos;t built for how
                 you actually sell, no converting currencies you don&apos;t use,
-                and no waiting on a plugin to catch up. It&apos;s the actual
-                product, built for the way business already happens here.
+                and no outgrowing the tool the moment you open a second store
+                or land a bulk order. It&apos;s the actual product, built for
+                the way business already happens here — and for the size it
+                grows into.
               </p>
               <p className="text-slate-400 mt-4">
-                It&apos;s built and run by TXD Agency, a single developer
-                working out of Croydon, UK.
+                It&apos;s built and run by TXD Agency, based in Croydon, UK.
               </p>
 
               <div className="mt-6">

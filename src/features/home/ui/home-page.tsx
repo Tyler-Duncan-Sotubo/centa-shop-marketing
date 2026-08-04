@@ -35,15 +35,16 @@ export default function HomePage() {
             <div className="md:col-span-6">
               <div className="md:me-6" data-aos="fade-up">
                 <h4 className="font-bold capitalize lg:leading-normal leading-normal text-5xl lg:text-6xl mb-5 text-black dark:text-white relative">
-                  Sell the way your customers already{" "}
+                  Built to grow with you, not{" "}
                   <span className="after:absolute after:inset-e-0 after:inset-s-0 after:bottom-3 after:lg:h-3 after:h-2 after:w-auto after:rounded-md after:bg-primary/30 relative text-primary">
-                    buy
+                    outgrow you
                   </span>
                 </h4>
                 <p className="text-slate-400 text-lg max-w-xl">
-                  Everything your shop needs — website, POS, stock, invoices,
-                  marketing — in one app that works how Nigeria pays. No
-                  computer needed.
+                  Website, POS, multi-location stock, wholesale quotes, staff
+                  roles, invoices, and WhatsApp checkout — one platform that
+                  works how Nigeria pays, from your first sale to your third
+                  store.
                 </p>
 
                 <div className="relative mt-8">
@@ -132,8 +133,9 @@ export default function HomePage() {
             </h3>
 
             <p className="text-slate-400 max-w-xl mx-auto">
-              Everything a Nigerian merchant needs to run a real online store,
-              without fighting the platform to get there.
+              From a first WhatsApp sale to running multiple stores and
+              wholesale buyers — the same platform, without switching tools
+              or fighting it to keep up.
             </p>
           </div>
 
@@ -176,11 +178,12 @@ export default function HomePage() {
 
             <div className="lg:ms-8 mt-8 md:mt-0">
               <h4 className="mb-4 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
-                Manage orders, payments, and <br /> WhatsApp — in one place
+                One inventory, every location — <br /> in-store and online
               </h4>
               <p className="text-slate-400">
-                Track orders, confirm bank transfers, and reply to customers on
-                WhatsApp without switching between five different tools.
+                A sale at one store, a wholesale order, or a checkout on your
+                website — stock stays accurate everywhere, so nothing gets
+                oversold and nothing needs reconciling by hand.
               </p>
 
               <div className="mt-4">

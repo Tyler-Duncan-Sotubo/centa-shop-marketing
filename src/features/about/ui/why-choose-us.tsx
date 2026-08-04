@@ -2,7 +2,10 @@ import Link from "next/link";
 import { IconType } from "react-icons";
 import { HiRocketLaunch } from "react-icons/hi2";
 import { BsWhatsapp } from "react-icons/bs";
-import { HiOutlineCurrencyDollar, HiOutlineChatAlt2 } from "react-icons/hi";
+import {
+  HiOutlineOfficeBuilding,
+  HiOutlineChatAlt2,
+} from "react-icons/hi";
 
 interface Reason {
   icon: IconType;
@@ -20,7 +23,7 @@ const reasons: Reason[] = [
     iconColor: "#4032c8",
     bg: "bg-primary/5",
     title: "Get selling, fast and easy.",
-    desc: "Launch your online store with our easy-to-use, do-it-yourself tools — they'll get you up and running in no time, no developer required.",
+    desc: "Launch your online store in no time — and keep the same platform as you add locations, staff, and wholesale buyers, instead of migrating later.",
     cta: "Try it for free",
     href: "/page-pricing",
   },
@@ -34,11 +37,11 @@ const reasons: Reason[] = [
     href: "/page-pricing",
   },
   {
-    icon: HiOutlineCurrencyDollar,
+    icon: HiOutlineOfficeBuilding,
     iconColor: "#e37400",
     bg: "bg-amber-500/5",
-    title: "Simple, transparent pricing.",
-    desc: "SalesCenta works month-to-month. There's no long-term contract, so you can cancel whenever you like.",
+    title: "Room to grow, one price at a time.",
+    desc: "Multi-location inventory, POS, and wholesale quoting are part of the platform — not app add-ons that push your bill up every time your business does.",
     cta: "See our pricing",
     href: "/page-pricing",
   },
@@ -47,7 +50,7 @@ const reasons: Reason[] = [
     iconColor: "#7c3aed",
     bg: "bg-violet-500/5",
     title: "Real, direct support.",
-    desc: "SalesCenta is built and supported by one person, not a call centre. Reach out on WhatsApp or email and you'll hear back from the person who actually built it.",
+    desc: "No call centre and no ticket queue. Reach out on WhatsApp or email and hear back from someone who actually knows how your store is set up.",
     cta: "Talk to us",
     href: "/contact-one",
   },

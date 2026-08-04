@@ -4,7 +4,7 @@ import { IconType } from "react-icons";
 import {
   HiOutlineTemplate,
   HiOutlineTag,
-  HiOutlineUserGroup,
+  HiOutlineOfficeBuilding,
   HiOutlineChartBar,
   HiOutlineSparkles,
 } from "react-icons/hi";
@@ -31,16 +31,16 @@ const features: Feature[] = [
     color: "#e37400",
   },
   {
+    icon: HiOutlineOfficeBuilding,
+    title: "Multiple stores, one system",
+    desc: "POS for every physical location, wholesale quotes for bulk buyers, and stock that stays accurate across all of it — no separate tools to reconcile.",
+    color: "#635bff",
+  },
+  {
     icon: HiOutlineTag,
     title: "Marketing that runs itself",
     desc: "Discount codes, email and SMS campaigns, and automatic follow-ups for abandoned carts — fewer sales slip away.",
     color: "#7c3aed",
-  },
-  {
-    icon: HiOutlineUserGroup,
-    title: "Staff roles & permissions",
-    desc: "Bring your team in with proper access control — manager, sales, inventory, and support roles built in.",
-    color: "#635bff",
   },
   {
     icon: HiOutlineChartBar,
