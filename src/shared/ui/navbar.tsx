@@ -84,21 +84,18 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <Link
             href="https://app.salescenta.com/login"
-            className="hidden lg:inline-flex items-center px-4 py-2 text-sm font-semibold tracking-wide rounded-full border border-gray-200 dark:border-gray-800 text-slate-700 hover:border-primary hover:text-primary dark:text-gray-300 transition-colors"
+            className="hidden lg:inline-flex items-center hover:text-white px-10 py-2 text-sm font-semibold tracking-wide rounded-full border border-gray-200 dark:border-gray-800 text-slate-700  hover:bg-primary-700 dark:text-gray-300 transition-colors"
+            target="_blank"
           >
             Sign in
           </Link>
-
-          <ul className="buy-button hidden lg:block list-none space-x-1 mb-0 static! float-none!">
-            <li className="inline mb-0">
-              <Link
-                href="https://app.salescenta.com/signup"
-                className="py-2 px-5 inline-flex items-center font-semibold tracking-wide align-middle duration-500 text-sm text-center rounded-full bg-primary hover:bg-primary-700 border border-primary hover:border-primary-700 text-white"
-              >
-                Start free trial
-              </Link>
-            </li>
-          </ul>
+          <Link
+            target="_blank"
+            href="https://app.salescenta.com/signup"
+            className="py-2 px-5 inline-flex items-center font-semibold tracking-wide align-middle duration-500 text-sm text-center rounded-full bg-primary hover:bg-primary-700 border border-primary hover:border-primary-700 text-white"
+          >
+            Start free trial
+          </Link>
 
           <div className="menu-extras static! lg:hidden">
             <div className="menu-item">
@@ -171,7 +168,7 @@ export default function Navbar() {
             <Link
               href="https://app.salescenta.com/signup"
               onClick={() => setIsMenu(false)}
-              className="block w-full rounded-full bg-primary py-2 px-4 text-center text-sm font-semibold tracking-wide text-white transition-colors duration-500 hover:bg-primary-700"
+              className="block w-full rounded-full bg-primary py-2.5  text-center text-sm font-semibold tracking-wide text-white transition-colors duration-500 hover:bg-primary-700"
             >
               Start free trial
             </Link>
