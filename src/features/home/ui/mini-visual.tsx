@@ -58,18 +58,18 @@ export function StatRow({
       viewport={{ once: true }}
       transition={{ delay, duration: 0.4, ease: "easeOut" }}
     >
-      <span className="flex items-center gap-2.5 text-sm text-slate-500 dark:text-slate-400">
-        <span className="flex items-center justify-center size-7 rounded-lg bg-primary/8 text-primary">
-          <Icon className="size-3.5" />
+      <span className="flex items-center gap-2.5 text-base text-slate-500 dark:text-slate-400">
+        <span className="flex items-center justify-center size-8 rounded-lg bg-primary/8 text-primary">
+          <Icon className="size-4" />
         </span>
         {label}
       </span>
       <span className="flex items-center gap-2">
-        <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 tabular-nums">
+        <span className="text-base font-semibold text-slate-700 dark:text-slate-200 tabular-nums">
           {value}
         </span>
         {trend && (
-          <span className="text-[11px] font-medium text-emerald-500">
+          <span className="text-sm font-medium text-emerald-500">
             {trend}
           </span>
         )}
@@ -93,7 +93,7 @@ export function AnimatedBar({
 }) {
   return (
     <div className="mb-3 last:mb-0">
-      <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1.5">
+      <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400 mb-1.5">
         <span>{label}</span>
         <span className="font-medium tabular-nums">{percent}%</span>
       </div>

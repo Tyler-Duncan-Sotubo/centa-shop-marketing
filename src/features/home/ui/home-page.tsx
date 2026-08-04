@@ -168,7 +168,7 @@ export default function HomePage() {
             <h3 className="mb-4 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
               One system, every part of the business
             </h3>
-            <p className="text-slate-400 max-w-xl mx-auto">
+            <p className="text-slate-400 text-lg max-w-xl mx-auto">
               Sales, finance, stock, and marketing don&apos;t live in separate
               apps here — follow the thread.
             </p>

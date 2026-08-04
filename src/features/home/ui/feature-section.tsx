@@ -52,35 +52,35 @@ export default function FeatureSection({
             viewport={{ once: true, amount: 0.35 }}
             variants={revealVariants}
           >
-            <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-2">
+            <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-2">
               {eyebrow}
             </p>
-            <h3 className="mb-3 md:text-2xl text-xl font-semibold leading-snug">
+            <h3 className="mb-4 md:text-3xl text-2xl font-semibold leading-snug">
               {title}
             </h3>
-            <p className="text-slate-400 text-sm md:text-base">{desc}</p>
+            <p className="text-slate-400 text-base md:text-lg">{desc}</p>
 
-            <div className="flex flex-wrap gap-2 mt-4">
+            <div className="flex flex-wrap gap-2.5 mt-5">
               {tags.map((tag) => {
                 const TagIcon = tag.icon;
                 return (
                   <span
                     key={tag.label}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-primary/5 text-primary text-xs font-medium px-3 py-1.5"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-primary/5 text-primary text-sm font-medium px-3.5 py-2"
                   >
-                    <TagIcon className="size-3.5" />
+                    <TagIcon className="size-4" />
                     {tag.label}
                   </span>
                 );
               })}
             </div>
 
-            <div className="mt-5">
+            <div className="mt-6">
               <Link
                 href={href}
-                className="relative inline-flex items-center font-semibold tracking-wide align-middle text-sm text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:inset-e-0 hover:after:inset-e-auto after:bottom-0 after:inset-s-0 after:duration-500 text-primary hover:text-primary after:bg-primary duration-500"
+                className="relative inline-flex items-center font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:inset-e-0 hover:after:inset-e-auto after:bottom-0 after:inset-s-0 after:duration-500 text-primary hover:text-primary after:bg-primary duration-500"
               >
-                Find Out More <MdKeyboardArrowRight className="text-lg ms-1" />
+                Find Out More <MdKeyboardArrowRight className="text-xl ms-1" />
               </Link>
             </div>
           </motion.div>

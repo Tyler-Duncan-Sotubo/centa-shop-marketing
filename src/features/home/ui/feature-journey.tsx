@@ -66,8 +66,8 @@ export default function FeatureJourney() {
         visual={
           <VisualFrame tint="emerald">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xs text-slate-400">INV-000042</span>
-              <span className="rounded-full bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[11px] font-medium px-2.5 py-1">
+              <span className="text-sm text-slate-400">INV-000042</span>
+              <span className="rounded-full bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium px-3 py-1">
                 Paid
               </span>
             </div>
