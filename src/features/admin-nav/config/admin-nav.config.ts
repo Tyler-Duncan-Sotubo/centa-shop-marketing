@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { FileText } from "lucide-react";
+import { FileText, Megaphone } from "lucide-react";
 
 export type NavItem = {
   title: string;
@@ -15,4 +15,5 @@ export type NavItem = {
 // pattern only if this ever needs real sections or per-item gating.
 export const adminNavItems: NavItem[] = [
   { title: "Posts", link: "/admin/posts", icon: FileText },
+  { title: "Announcements", link: "/admin/announcements", icon: Megaphone },
 ];
