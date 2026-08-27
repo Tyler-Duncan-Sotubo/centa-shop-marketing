@@ -14,14 +14,18 @@ import "server-only";
  * than ship the secret to a browser.
  */
 
+// Both are trimmed: a stray space or newline around a value in .env.local or
+// a hosting dashboard is easy to introduce and otherwise fails confusingly —
+// a leading space makes the URL unparseable, and a trailing newline makes the
+// key mismatch a byte-for-byte comparison.
 function backendUrl(): string {
-  const url = process.env.BACKEND_URL;
+  const url = process.env.BACKEND_URL?.trim();
   if (!url) throw new Error("BACKEND_URL is not set");
   return url.replace(/\/$/, "");
 }
 
 function internalKey(): string {
-  const key = process.env.PLATFORM_INTERNAL_KEY;
+  const key = process.env.PLATFORM_INTERNAL_KEY?.trim();
   if (!key) throw new Error("PLATFORM_INTERNAL_KEY is not set");
   return key;
 }

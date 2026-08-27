@@ -8,7 +8,9 @@
  */
 
 function backendUrl(): string {
-  const url = process.env.NEXT_PUBLIC_BACKEND_URL ?? process.env.BACKEND_URL;
+  const url = (
+    process.env.NEXT_PUBLIC_BACKEND_URL ?? process.env.BACKEND_URL
+  )?.trim();
   if (!url) throw new Error("BACKEND_URL is not set");
   return url.replace(/\/$/, "");
 }

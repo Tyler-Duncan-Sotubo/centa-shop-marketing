@@ -36,11 +36,16 @@ export const authOptions: NextAuthOptions = {
             },
           );
           return { id: user.id, email: user.email, name: user.name };
-        } catch {
-          // The backend returns 401 for bad credentials and throws here for a
-          // genuine outage too. Both become "sign-in failed" — next-auth has
-          // no way to distinguish them for the user, and saying which would
-          // reveal whether an email exists.
+        } catch (err) {
+          // next-auth shows the same "invalid credentials" message however
+          // this fails, so a misconfigured BACKEND_URL/PLATFORM_INTERNAL_KEY
+          // is indistinguishable from a wrong password in the UI. Log the
+          // real reason server-side, or that config error costs an hour of
+          // debugging the wrong thing. Never log the submitted password.
+          console.error(
+            "[auth] platform/auth/verify failed:",
+            err instanceof Error ? err.message : err,
+          );
           return null;
         }
       },
