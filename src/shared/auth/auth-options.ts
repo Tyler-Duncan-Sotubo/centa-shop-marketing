@@ -1,10 +1,9 @@
 import { NextAuthOptions } from "next-auth";
 import { getServerSession } from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs";
-import { eq } from "drizzle-orm";
-import { db } from "@/shared/db/client";
-import { adminUsers } from "@/shared/db/schema";
+import { platformFetch } from "@/shared/api/platform-client";
+
+type VerifiedAdmin = { id: string; email: string; name: string };
 
 export const authOptions: NextAuthOptions = {
   pages: {
@@ -20,24 +19,30 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
+      // Credentials are verified by the backend, which owns admin_users and
+      // the password hashes. Session issuing stays here.
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
 
-        const user = await db.query.adminUsers.findFirst({
-          where: eq(adminUsers.email, credentials.email.toLowerCase()),
-        });
-
-        if (!user) return null;
-
-        const valid = await bcrypt.compare(
-          credentials.password,
-          user.passwordHash,
-        );
-
-        console.log("valid", valid);
-        if (!valid) return null;
-
-        return { id: user.id, email: user.email, name: user.name };
+        try {
+          const user = await platformFetch<VerifiedAdmin>(
+            "platform/auth/verify",
+            {
+              method: "POST",
+              body: {
+                email: credentials.email.toLowerCase(),
+                password: credentials.password,
+              },
+            },
+          );
+          return { id: user.id, email: user.email, name: user.name };
+        } catch {
+          // The backend returns 401 for bad credentials and throws here for a
+          // genuine outage too. Both become "sign-in failed" — next-auth has
+          // no way to distinguish them for the user, and saying which would
+          // reveal whether an email exists.
+          return null;
+        }
       },
     }),
   ],

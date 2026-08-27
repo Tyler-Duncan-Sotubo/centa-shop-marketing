@@ -1,19 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { and, desc, eq, sql } from "drizzle-orm";
 import PageHero from "@/shared/ui/page-hero";
 import ContactCta from "@/features/home/ui/contact-cta";
-import { db } from "@/shared/db/client";
-import { platformPosts, platformPostCategoryEnum } from "@/shared/db/schema";
+import { contentFetch } from "@/shared/api/content-client";
+import type { PublishedPost } from "@/shared/api/platform-post.type";
 
-type Post = typeof platformPosts.$inferSelect;
-type Category = (typeof platformPostCategoryEnum.enumValues)[number];
-
-const PUBLISHED_WHERE = and(
-  eq(platformPosts.status, "published"),
-  sql`${platformPosts.publishedAt} IS NOT NULL`,
-  sql`${platformPosts.publishedAt} <= now()`,
-);
+type Post = PublishedPost;
+type Category = Post["category"];
 
 const SECTIONS: { category: Category; title: string; subtitle: string }[] = [
   {
@@ -65,7 +58,7 @@ function PostCard({ post }: { post: Post }) {
         )}
         {post.publishedAt && (
           <p className="text-slate-400 text-sm mt-3">
-            {post.publishedAt.toLocaleDateString("en-GB", {
+            {new Date(post.publishedAt).toLocaleDateString("en-GB", {
               day: "numeric",
               month: "short",
               year: "numeric",
@@ -78,11 +71,10 @@ function PostCard({ post }: { post: Post }) {
 }
 
 export default async function LearnPage() {
-  const posts = await db
-    .select()
-    .from(platformPosts)
-    .where(PUBLISHED_WHERE)
-    .orderBy(desc(platformPosts.publishedAt));
+  // The backend serves only published posts, already ordered by publish date.
+  const { items: posts } = await contentFetch<{ items: Post[] }>(
+    "content/platform-posts?limit=50",
+  ).catch(() => ({ items: [] as Post[] }));
 
   const byCategory = SECTIONS.map((section) => ({
     ...section,

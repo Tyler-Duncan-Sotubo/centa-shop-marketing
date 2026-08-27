@@ -1,7 +1,5 @@
 import { notFound } from "next/navigation";
-import { eq } from "drizzle-orm";
-import { db } from "@/shared/db/client";
-import { platformPosts } from "@/shared/db/schema";
+import { getPost } from "@/features/admin-posts/actions/posts.actions";
 import { PostEditorForm } from "@/features/admin-posts/ui/post-editor-form";
 
 export default async function EditPostPage({
@@ -11,9 +9,7 @@ export default async function EditPostPage({
 }) {
   const { id } = await params;
 
-  const post = await db.query.platformPosts.findFirst({
-    where: eq(platformPosts.id, id),
-  });
+  const post = await getPost(id).catch(() => null);
 
   if (!post) notFound();
 

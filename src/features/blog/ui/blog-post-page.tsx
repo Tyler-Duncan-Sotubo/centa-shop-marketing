@@ -1,14 +1,13 @@
 import { cache } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { and, desc, eq, ne, sql } from "drizzle-orm";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
-import { db } from "@/shared/db/client";
-import { platformPosts, platformPostCategoryEnum } from "@/shared/db/schema";
+import { contentFetch } from "@/shared/api/content-client";
+import type { PublishedPost } from "@/shared/api/platform-post.type";
 
-type Post = typeof platformPosts.$inferSelect;
-type Category = (typeof platformPostCategoryEnum.enumValues)[number];
+type Post = PublishedPost;
+type Category = Post["category"];
 
 const CATEGORY_META: Record<Category, { label: string; badgeClass: string }> = {
   how_to: {
@@ -25,21 +24,16 @@ const CATEGORY_META: Record<Category, { label: string; badgeClass: string }> = {
   },
 };
 
-const PUBLISHED_WHERE = and(
-  eq(platformPosts.status, "published"),
-  sql`${platformPosts.publishedAt} IS NOT NULL`,
-  sql`${platformPosts.publishedAt} <= now()`,
-);
-
 const SITE_URL = "https://salescenta.com";
 
 // Wrapped in React's cache() so generateMetadata and the page body
 // share one query per request instead of hitting the DB twice.
 export const getPublishedPostBySlug = cache(async (slug: string) => {
-  return db.query.platformPosts.findFirst({
-    where: and(eq(platformPosts.slug, slug), PUBLISHED_WHERE),
-    with: { author: { columns: { name: true } } },
-  });
+  // The backend only ever serves published posts here, so the published
+  // filtering that used to live in this file is gone rather than duplicated.
+  return contentFetch<Post | null>(`content/platform-posts/${slug}`).catch(
+    () => null,
+  );
 });
 
 function estimateReadingMinutes(html: string) {
@@ -48,8 +42,10 @@ function estimateReadingMinutes(html: string) {
   return Math.max(1, Math.round(words / 200));
 }
 
-function formatDate(date: Date) {
-  return date.toLocaleDateString("en-GB", {
+// Dates arrive as ISO strings from the API rather than Date objects, which
+// is what they were when this page queried the database directly.
+function formatDate(date: string | Date) {
+  return new Date(date).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
     year: "numeric",
@@ -104,18 +100,14 @@ export async function BlogPostPage({ slug }: { slug: string }) {
 
   if (!post) notFound();
 
-  const relatedPosts = await db
-    .select()
-    .from(platformPosts)
-    .where(
-      and(
-        PUBLISHED_WHERE,
-        eq(platformPosts.category, post.category),
-        ne(platformPosts.id, post.id),
-      ),
-    )
-    .orderBy(desc(platformPosts.publishedAt))
-    .limit(3);
+  // The public list endpoint can filter by category but not exclude the post
+  // being viewed, so ask for one extra and drop it here.
+  const related = await contentFetch<{ items: Post[] }>(
+    `content/platform-posts?category=${post.category}&limit=4`,
+  ).catch(() => ({ items: [] as Post[] }));
+  const relatedPosts = related.items
+    .filter((p) => p.id !== post.id)
+    .slice(0, 3);
 
   const readingMinutes = estimateReadingMinutes(post.body);
 
@@ -125,8 +117,8 @@ export async function BlogPostPage({ slug }: { slug: string }) {
     headline: post.title,
     description: post.seoDescription || post.excerpt || undefined,
     image: post.coverImageUrl || undefined,
-    datePublished: post.publishedAt?.toISOString(),
-    dateModified: (post.updatedAt ?? post.publishedAt)?.toISOString(),
+    datePublished: post.publishedAt ?? undefined,
+    dateModified: post.updatedAt ?? post.publishedAt ?? undefined,
     author: {
       "@type": "Person",
       name: post.author?.name ?? "SalesCenta",
