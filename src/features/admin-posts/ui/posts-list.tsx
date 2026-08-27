@@ -29,6 +29,7 @@ export async function PostsList() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-12">#</TableHead>
               <TableHead>Title</TableHead>
               <TableHead>Category</TableHead>
               <TableHead>Status</TableHead>
@@ -36,8 +37,11 @@ export async function PostsList() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {posts.map((post) => (
+            {posts.map((post, index) => (
               <TableRow key={post.id}>
+                <TableCell className="text-muted-foreground">
+                  {index + 1}
+                </TableCell>
                 <TableCell>
                   <Link
                     href={`/admin/posts/${post.id}`}
