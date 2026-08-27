@@ -43,6 +43,7 @@ export async function AnnouncementsPage() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-12">#</TableHead>
               <TableHead>Title</TableHead>
               <TableHead>Message</TableHead>
               <TableHead>Devices</TableHead>
@@ -50,10 +51,15 @@ export async function AnnouncementsPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {announcements.map((a) => (
+            {announcements.map((a, index) => (
               <TableRow key={a.id}>
+                <TableCell className="text-muted-foreground">
+                  {index + 1}
+                </TableCell>
                 <TableCell className="font-medium">{a.title}</TableCell>
-                <TableCell className="max-w-md text-muted-foreground">
+                {/* whitespace-normal overrides the cell default so the
+                    clamp can actually wrap to a second line. */}
+                <TableCell className="max-w-md whitespace-normal text-muted-foreground">
                   <span className="line-clamp-2">{a.body}</span>
                 </TableCell>
                 <TableCell className="text-muted-foreground">
