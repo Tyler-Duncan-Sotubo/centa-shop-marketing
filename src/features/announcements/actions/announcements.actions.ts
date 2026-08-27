@@ -31,7 +31,11 @@ export async function getRecipientCount() {
   );
 }
 
-export type SendState = { error?: string; sent?: { recipientCount: number } };
+export type SendState = {
+  error?: string;
+  /** id lets the UI tell a fresh send from one it has already dismissed. */
+  sent?: { id: string; recipientCount: number };
+};
 
 export async function sendAnnouncement(
   _prev: SendState,
@@ -50,7 +54,9 @@ export async function sendAnnouncement(
       { method: "POST", body: { title, body, sentBy: session.user.id } },
     );
     revalidatePath("/admin/announcements");
-    return { sent: { recipientCount: created.recipientCount } };
+    return {
+      sent: { id: created.id, recipientCount: created.recipientCount },
+    };
   } catch (err) {
     // Surfaced in the form rather than thrown: the send is irreversible, so
     // the admin needs to know whether it actually went out, not a crash page.

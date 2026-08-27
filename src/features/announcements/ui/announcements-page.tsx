@@ -1,8 +1,16 @@
 import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
+import {
   getRecipientCount,
   listAnnouncements,
 } from "../actions/announcements.actions";
-import { AnnouncementComposer } from "./announcement-composer";
+import { SendAnnouncementDialog } from "./send-announcement-dialog";
 
 function formatDate(value: string) {
   return new Date(value).toLocaleString("en-GB", {
@@ -22,41 +30,42 @@ export async function AnnouncementsPage() {
 
   return (
     <div className="px-6 py-8">
-      <div className="mb-6">
+      <div className="mb-6 flex items-center justify-between">
         <h1 className="text-xl font-semibold">Announcements</h1>
-        <p className="text-sm text-muted-foreground">
-          Short messages pushed to every merchant&apos;s phone. For longer
-          content, write a platform post instead.
-        </p>
+        <SendAnnouncementDialog recipientCount={count} />
       </div>
 
-      <AnnouncementComposer recipientCount={count} />
-
-      <h2 className="mt-10 mb-3 font-medium">Sent</h2>
       {announcements.length === 0 ? (
         <p className="text-sm text-muted-foreground">
-          Nothing sent yet.
+          No announcements sent yet.
         </p>
       ) : (
-        <ul className="divide-y rounded-lg border">
-          {announcements.map((a) => (
-            <li key={a.id} className="p-4">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-medium">{a.title}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{a.body}</p>
-                </div>
-                <div className="shrink-0 text-right text-xs text-muted-foreground">
-                  <p>{formatDate(a.createdAt)}</p>
-                  <p className="mt-1">
-                    {a.recipientCount.toLocaleString()} device
-                    {a.recipientCount === 1 ? "" : "s"}
-                  </p>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Title</TableHead>
+              <TableHead>Message</TableHead>
+              <TableHead>Devices</TableHead>
+              <TableHead>Sent</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {announcements.map((a) => (
+              <TableRow key={a.id}>
+                <TableCell className="font-medium">{a.title}</TableCell>
+                <TableCell className="max-w-md text-muted-foreground">
+                  <span className="line-clamp-2">{a.body}</span>
+                </TableCell>
+                <TableCell className="text-muted-foreground">
+                  {a.recipientCount.toLocaleString()}
+                </TableCell>
+                <TableCell className="text-muted-foreground">
+                  {formatDate(a.createdAt)}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       )}
     </div>
   );
