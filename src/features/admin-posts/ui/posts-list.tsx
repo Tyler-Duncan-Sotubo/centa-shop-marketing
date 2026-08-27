@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { desc } from "drizzle-orm";
-import { db } from "@/shared/db/client";
-import { platformPosts } from "@/shared/db/schema";
+import { listPosts } from "@/features/admin-posts/actions/posts.actions";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -14,10 +12,7 @@ import {
 } from "@/components/ui/table";
 
 export async function PostsList() {
-  const posts = await db
-    .select()
-    .from(platformPosts)
-    .orderBy(desc(platformPosts.createdAt));
+  const posts = await listPosts();
 
   return (
     <div className="px-6 py-8">
@@ -60,7 +55,7 @@ export async function PostsList() {
                   </Badge>
                 </TableCell>
                 <TableCell className="text-muted-foreground">
-                  {post.updatedAt.toLocaleDateString()}
+                  {new Date(post.updatedAt).toLocaleDateString()}
                 </TableCell>
               </TableRow>
             ))}

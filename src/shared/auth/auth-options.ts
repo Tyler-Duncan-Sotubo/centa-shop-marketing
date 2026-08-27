@@ -1,10 +1,9 @@
 import { NextAuthOptions } from "next-auth";
 import { getServerSession } from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs";
-import { eq } from "drizzle-orm";
-import { db } from "@/shared/db/client";
-import { adminUsers } from "@/shared/db/schema";
+import { platformFetch } from "@/shared/api/platform-client";
+
+type VerifiedAdmin = { id: string; email: string; name: string };
 
 export const authOptions: NextAuthOptions = {
   pages: {
@@ -20,24 +19,35 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
+      // Credentials are verified by the backend, which owns admin_users and
+      // the password hashes. Session issuing stays here.
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
 
-        const user = await db.query.adminUsers.findFirst({
-          where: eq(adminUsers.email, credentials.email.toLowerCase()),
-        });
-
-        if (!user) return null;
-
-        const valid = await bcrypt.compare(
-          credentials.password,
-          user.passwordHash,
-        );
-
-        console.log("valid", valid);
-        if (!valid) return null;
-
-        return { id: user.id, email: user.email, name: user.name };
+        try {
+          const user = await platformFetch<VerifiedAdmin>(
+            "platform/auth/verify",
+            {
+              method: "POST",
+              body: {
+                email: credentials.email.toLowerCase(),
+                password: credentials.password,
+              },
+            },
+          );
+          return { id: user.id, email: user.email, name: user.name };
+        } catch (err) {
+          // next-auth shows the same "invalid credentials" message however
+          // this fails, so a misconfigured BACKEND_URL/PLATFORM_INTERNAL_KEY
+          // is indistinguishable from a wrong password in the UI. Log the
+          // real reason server-side, or that config error costs an hour of
+          // debugging the wrong thing. Never log the submitted password.
+          console.error(
+            "[auth] platform/auth/verify failed:",
+            err instanceof Error ? err.message : err,
+          );
+          return null;
+        }
       },
     }),
   ],
