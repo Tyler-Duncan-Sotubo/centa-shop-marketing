@@ -22,6 +22,7 @@ const footerCompany: FooterLink[] = [
 ];
 
 const footerResources: FooterLink[] = [
+  { route: "/help", title: "Help centre" },
   { route: "/learn", title: "Blog" },
   { route: "/developer", title: "Developer" },
 ];

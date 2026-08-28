@@ -8,12 +8,9 @@ import type { PublishedPost } from "@/shared/api/platform-post.type";
 type Post = PublishedPost;
 type Category = Post["category"];
 
+// No "how_to" section: those are product documentation and are served by the
+// help centre, so the backend's default list does not return them.
 const SECTIONS: { category: Category; title: string; subtitle: string }[] = [
-  {
-    category: "how_to",
-    title: "Guides",
-    subtitle: "Practical how-tos for selling, payments, and running your store.",
-  },
   {
     category: "feature_update",
     title: "Feature Updates",
@@ -72,6 +69,10 @@ function PostCard({ post }: { post: Post }) {
 
 export default async function LearnPage() {
   // The backend serves only published posts, already ordered by publish date.
+  //
+  // No category param: the endpoint returns feature updates and testimonials.
+  // How-tos are deliberately absent — they are product documentation and live
+  // in the help centre, not on the marketing site.
   const { items: posts } = await contentFetch<{ items: Post[] }>(
     "content/platform-posts?limit=50",
   ).catch(() => ({ items: [] as Post[] }));
@@ -84,8 +85,8 @@ export default async function LearnPage() {
   return (
     <>
       <PageHero
-        title="Guides for growing your store"
-        subtext="Practical advice on selling, payments, and running your business online — plus the latest feature updates and real stories from merchants using SalesCenta."
+        title="News from SalesCenta"
+        subtext="The latest feature updates and real stories from merchants using SalesCenta. Looking for step-by-step help? Visit the help centre."
       />
 
       <section className="relative md:py-24 py-16">
