@@ -2,9 +2,9 @@
  * Client for the backend's PUBLIC `content` channel — no credentials, no
  * secret. Used by the marketing blog, which renders published platform posts.
  *
- * Separate from platform-client.ts on purpose: that one carries the platform
- * operator secret and is server-only. This one is safe anywhere, and its
- * responses are cacheable.
+ * This is the only backend client the marketing site needs. Authoring moved to
+ * the support app, which owns the credentialed platform channel; landing reads
+ * published content and nothing else.
  */
 
 function backendUrl(): string {
