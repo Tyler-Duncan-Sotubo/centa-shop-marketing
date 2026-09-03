@@ -141,7 +141,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <WebsitesGallery limit={3} />
+          <WebsitesGallery limit={6} />
 
           <div className="text-center mt-8">
             <Link
