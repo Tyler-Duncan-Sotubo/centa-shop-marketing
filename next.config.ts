@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
+  images: {
+    unoptimized: true,
+  },
   // The legal pages moved to clean URLs (the app links to them, and
   // /page-* read poorly in store listings). Old links keep working.
   async redirects() {
