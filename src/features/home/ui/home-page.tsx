@@ -15,6 +15,7 @@ import Integrations from "./integrations";
 import Faq from "./faq";
 import ContactCta from "./contact-cta";
 import Testimonials from "./testimonials";
+import { StoreBadges } from "@/shared/ui/store-badges";
 
 const heroTextVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -84,6 +85,8 @@ export default function HomePage() {
                     See pricing
                   </Link>
                 </div>
+
+                <StoreBadges className="mt-6" badgeClassName="h-11" />
               </motion.div>
             </div>
 
