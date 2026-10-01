@@ -86,12 +86,7 @@ export default function HomePage() {
                   </Link>
                 </div>
 
-                <div className="mt-8">
-                  <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
-                    Also on your phone
-                  </p>
-                  <StoreBadges className="mt-3" badgeClassName="h-11" />
-                </div>
+                <StoreBadges className="mt-6" badgeClassName="h-11" />
               </motion.div>
             </div>
 
