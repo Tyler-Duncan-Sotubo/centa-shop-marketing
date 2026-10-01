@@ -1,16 +1,10 @@
 import Image from "next/image";
-
-export const APP_STORE_URL = "https://apps.apple.com/app/id6802128175";
-export const GOOGLE_PLAY_URL =
-  "https://play.google.com/store/apps/details?id=com.salescenta.app";
+import { StoreBadges } from "./store-badges";
 
 /**
  * "Get the app" panel at the top of the footer: copy and the official
  * store badges on one side, two app screens on the other, rising out of
  * the panel's bottom edge.
- *
- * The badges are Apple's and Google's own artwork, unaltered — both
- * stores' marketing guidelines require that over home-made buttons.
  */
 export function AppDownloadPanel() {
   return (
@@ -36,36 +30,7 @@ export function AppDownloadPanel() {
               products and website wherever you are.
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start">
-              <a
-                href={APP_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-lg transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                <Image
-                  src="/images/app/app-store-badge.svg"
-                  alt="Download on the App Store"
-                  width={144}
-                  height={48}
-                  className="h-12 w-auto"
-                />
-              </a>
-              <a
-                href={GOOGLE_PLAY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-lg transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                <Image
-                  src="/images/app/google-play-badge.png"
-                  alt="Get it on Google Play"
-                  width={161}
-                  height={48}
-                  className="h-12 w-auto"
-                />
-              </a>
-            </div>
+            <StoreBadges className="mt-8 justify-center md:justify-start" />
           </div>
 
           {/* The panel clips the phones' lower half, so they read as
