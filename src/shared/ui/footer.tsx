@@ -4,6 +4,7 @@ import Image from "next/image";
 import * as Icon from "react-feather";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { usePathname } from "next/navigation";
+import { AppDownloadPanel } from "./app-download-panel";
 
 interface FooterLink {
   route: string;
@@ -40,6 +41,8 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-slate-900 dark:bg-slate-800 text-gray-200 dark:text-gray-200">
+      <AppDownloadPanel />
+
       <div className="container relative">
         <div className="grid grid-cols-12">
           <div className="col-span-12">
