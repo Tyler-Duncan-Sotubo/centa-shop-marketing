@@ -1,23 +1,39 @@
-import PageHero from "@/shared/ui/page-hero";
-import ContactCta from "@/features/home/ui/contact-cta";
-import WebsitesGallery from "@/features/home/ui/websites-gallery";
+import { SIGNUP_URL } from "@/shared/config/site";
+import { ButtonLink } from "@/shared/ui/site/button-link";
+import { ClosingCta } from "@/shared/ui/site/closing-cta";
+import { PageHero } from "@/shared/ui/site/page-hero";
+import { stores } from "../stores";
+import { StoreCard } from "./store-card";
 
 export default function ShowcasePage() {
   return (
     <>
       <PageHero
-        title="Real stores, built on SalesCenta"
-        subtext="A look at the storefronts already selling with us — real merchants using WhatsApp checkout, bank transfer, and a branded storefront to run their business. Browse a few of them below to see what's possible when you launch on SalesCenta."
-        align="left"
-      />
-
-      <section className="relative md:py-24 py-16">
-        <div className="container relative">
-          <WebsitesGallery />
+        eyebrow="Showcase"
+        title="Real stores, built on SalesCenta."
+        sub="Storefronts already selling with WhatsApp checkout, bank transfer and their own branding. Take a look at what's possible when you launch on SalesCenta."
+        actions={
+          <ButtonLink href={SIGNUP_URL} variant="light" arrow>
+            Start your free trial
+          </ButtonLink>
+        }
+        overlap="md"
+      >
+        <div className="mt-16 grid gap-10 md:mt-20 md:grid-cols-2 lg:grid-cols-3">
+          {stores.map((s) => (
+            <div key={s.name} className="rounded-2xl bg-white p-3 pb-4 shadow-[0_30px_70px_-35px_rgba(0,24,49,0.55)] ring-1 ring-line">
+              <StoreCard store={s} inset />
+            </div>
+          ))}
         </div>
+      </PageHero>
 
-        <ContactCta className="container relative md:mt-24 mt-16" />
-      </section>
+      <div className="h-24 md:h-32" />
+
+      <ClosingCta
+        title="Your store could be next."
+        sub="Set up your storefront, connect Paystack and start taking orders on WhatsApp."
+      />
     </>
   );
 }

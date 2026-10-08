@@ -1,56 +1,22 @@
-"use client";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { FaArrowRight } from "react-icons/fa";
-import { IconType } from "react-icons";
 import {
-  HiOutlineSparkles,
-  HiOutlineChartBar,
-  HiOutlineQuestionMarkCircle,
-  HiOutlineShieldCheck,
-  HiOutlineDeviceMobile,
-} from "react-icons/hi";
-import { FadeInUp, FadeInStagger, StaggerItem } from "@/shared/ui/motion";
+  ChartColumn,
+  CircleHelp,
+  MonitorSmartphone,
+  ShieldCheck,
+} from "lucide-react";
+import { SIGNUP_URL } from "@/shared/config/site";
+import { ButtonLink } from "@/shared/ui/site/button-link";
+import { ClosingCta } from "@/shared/ui/site/closing-cta";
+import { PageHero } from "@/shared/ui/site/page-hero";
+import { body, h2, label, section, wrap } from "@/shared/ui/site/styles";
+import { ZuriChat } from "@/shared/ui/product/product-ui";
+import type { ChatMessage } from "@/shared/ui/product/sample-data";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-
-const capabilities: {
-  icon: IconType;
-  title: string;
-  desc: string;
-  color: string;
-}[] = [
-  {
-    icon: HiOutlineChartBar,
-    title: "Ask about your business",
-    desc: "“How much did I sell this week?” “Which products are low on stock?” “Have I been paid for order 97?” Zuri answers from your real numbers — never guesses.",
-    color: "#00c3f7",
-  },
-  {
-    icon: HiOutlineQuestionMarkCircle,
-    title: "Get help doing anything",
-    desc: "Ask “how do I add a tax rate?” or “how do I start an email campaign?” and Zuri gives verified step-by-step instructions for the exact screen you're on.",
-    color: "#e37400",
-  },
-  {
-    icon: HiOutlineDeviceMobile,
-    title: "On your phone and your desk",
-    desc: "Zuri lives inside the SalesCenta app and dashboard, and knows which one you're using — so its directions always match what's in front of you.",
-    color: "#7c3aed",
-  },
-  {
-    icon: HiOutlineShieldCheck,
-    title: "Your data stays yours",
-    desc: "Zuri only sees your own store's data, respects your staff roles and permissions, and never shares information between businesses.",
-    color: "#16a34a",
-  },
-];
-
-const sampleChat: { role: "user" | "zuri"; text: string }[] = [
+const conversation: ChatMessage[] = [
   { role: "user", text: "How many orders came in this week?" },
   {
     role: "zuri",
-    text: "You had 34 orders this week totalling ₦1,240,000 — up 18% on last week. Your best day was Saturday with 11 orders.",
+    text: "You had 34 orders this week totalling ₦1,240,000, up 18% on last week. Your best day was Saturday with 11 orders.",
   },
   { role: "user", text: "Which products are low on stock?" },
   {
@@ -59,146 +25,109 @@ const sampleChat: { role: "user" | "zuri"; text: string }[] = [
   },
 ];
 
+const capabilities = [
+  {
+    icon: ChartColumn,
+    title: "Ask about your business",
+    desc: "How much did I sell this week? Which products are low on stock? Have I been paid for order 97? Zuri answers from your real numbers and never guesses.",
+  },
+  {
+    icon: CircleHelp,
+    title: "Get help doing anything",
+    desc: "Ask how to add a tax rate or start an email campaign, and Zuri gives you verified step-by-step instructions for the screen you're on.",
+  },
+  {
+    icon: MonitorSmartphone,
+    title: "On your phone and your desk",
+    desc: "Zuri lives inside the SalesCenta app and dashboard and knows which one you're using, so its directions match what's in front of you.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Your data stays yours",
+    desc: "Zuri only sees your own store's data, respects your staff roles and permissions, and never shares information between businesses.",
+  },
+];
+
+const prompts = [
+  "How much did I sell this week?",
+  "Which products are low on stock?",
+  "Have I been paid for order 97?",
+  "How do I add a tax rate?",
+  "How do I start an email campaign?",
+];
+
 export default function ZuriPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative table w-full py-20 lg:py-30 overflow-hidden">
-        <div className="container relative">
-          <div className="relative grid md:grid-cols-12 grid-cols-1 items-center gap-7.5">
-            <div className="md:col-span-6">
-              <motion.div
-                className="md:me-6"
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: EASE }}
-              >
-                <h1 className="font-bold capitalize lg:leading-normal leading-normal text-5xl lg:text-6xl mb-5 text-black dark:text-white">
-                  Your business,{" "}
-                  <span className="after:absolute after:inset-e-0 after:inset-s-0 after:bottom-3 after:lg:h-3 after:h-2 after:w-auto after:rounded-md after:bg-primary/30 relative text-primary">
-                    answered
-                  </span>
-                </h1>
-                <p className="text-slate-400 text-lg max-w-xl">
-                  Zuri is the AI assistant built into SalesCenta. Ask about
-                  your sales, stock, and payments in plain language — or ask
-                  how to do anything in the app — and get a straight answer
-                  from your own data.
-                </p>
-
-                <div className="relative mt-8">
-                  <Link
-                    href="https://app.salescenta.com/signup"
-                    className="py-4 px-5 mr-4 inline-block font-semibold tracking-wide border align-middle text-base text-center bg-primary hover:bg-primary-700 border-primary hover:border-primary-700 text-white rounded-xl me-2 hover:scale-105 transition-transform duration-300"
-                  >
-                    Try Zuri free{" "}
-                    <FaArrowRight className="inline-block ml-2" />
-                  </Link>
-                  <Link
-                    href="/page-pricing"
-                    className="py-4 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-white hover:bg-primary/5 border-gray-200 dark:border-gray-800 dark:bg-slate-900 text-slate-700 dark:text-slate-200 rounded-xl"
-                  >
-                    See pricing
-                  </Link>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Chat mockup */}
-            <div className="md:col-span-6">
-              <motion.div
-                initial={{ opacity: 0, y: 24, scale: 0.97 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
-                className="max-w-md mx-auto rounded-2xl shadow-xl dark:shadow-gray-800 bg-white dark:bg-slate-900 border border-gray-100 dark:border-gray-800 overflow-hidden">
-                <div className="flex items-center gap-3 px-5 py-4 border-b border-gray-100 dark:border-gray-800">
-                  <div className="size-9 rounded-full bg-primary/10 flex items-center justify-center">
-                    <HiOutlineSparkles className="text-primary text-xl" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-black dark:text-white">
-                      Zuri
-                    </div>
-                    <div className="text-xs text-slate-400">
-                      Your store assistant
-                    </div>
-                  </div>
-                </div>
-                <div className="p-5 space-y-3">
-                  {sampleChat.map((m, i) => (
-                    <div
-                      key={i}
-                      className={
-                        m.role === "user"
-                          ? "ms-auto max-w-[85%] rounded-2xl rounded-br-md bg-primary text-white px-4 py-2.5 text-sm"
-                          : "me-auto max-w-[90%] rounded-2xl rounded-bl-md bg-gray-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 px-4 py-2.5 text-sm"
-                      }
-                    >
-                      {m.text}
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
+      <PageHero
+        eyebrow="Zuri AI"
+        title="Your business, answered."
+        sub="Zuri is the AI assistant built into SalesCenta. Ask about your sales, stock and payments in plain language, or ask how to do anything in the app, and get a straight answer from your own data."
+        actions={
+          <>
+            <ButtonLink href={SIGNUP_URL} variant="light" arrow>
+              Try Zuri free
+            </ButtonLink>
+            <ButtonLink href="/page-pricing" variant="ghost">
+              See pricing
+            </ButtonLink>
+          </>
+        }
+        aside={
+          <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 sm:p-8">
+            <ZuriChat dark messages={conversation} />
           </div>
+        }
+      />
+
+      <section className={`${wrap} ${section}`}>
+        <p className={`${label} text-primary`}>What Zuri does</p>
+        <h2 className={`${h2} mt-4 max-w-[16ch]`}>Like having an analyst on staff.</h2>
+        <p className={`${body} mt-5 max-w-[54ch]`}>
+          No dashboards to learn and no reports to build. Ask a question and
+          get an answer sourced from your own store.
+        </p>
+        <div className="mt-14 grid border-t border-line md:grid-cols-2">
+          {capabilities.map((c, i) => (
+            <div
+              key={c.title}
+              className={`border-b border-line py-10 md:px-10 ${
+                i % 2 === 0 ? "md:border-r md:pl-0" : "md:pr-0"
+              }`}
+            >
+              <c.icon className="size-5 text-primary" />
+              <h3 className="mt-5 text-[22px] leading-[1.25] font-bold tracking-[-0.02em] text-ink">
+                {c.title}
+              </h3>
+              <p className={`${body} mt-3 max-w-[48ch]`}>{c.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Capabilities */}
-      <section className="relative md:py-24 py-16 bg-gray-50 dark:bg-slate-800">
-        <div className="container relative">
-          <FadeInUp className="grid grid-cols-1 pb-8 text-center">
-            <h2 className="mb-4 md:text-5xl text-3xl leading-tight font-bold max-w-2xl mx-auto">
-              Like having an analyst on staff
-            </h2>
-            <p className="text-slate-400 text-lg max-w-xl mx-auto">
-              No dashboards to learn, no reports to build. Ask Zuri a
-              question in plain language and get a straight answer, sourced
-              from your own store data.
-            </p>
-          </FadeInUp>
-
-          <FadeInStagger className="grid lg:grid-cols-2 grid-cols-1 mt-4 gap-7.5">
-            {capabilities.map((item) => {
-              const ItemIcon = item.icon;
-              return (
-                <StaggerItem
-                  key={item.title}
-                  hover
-                  className="flex gap-5 p-6 rounded-xl bg-white dark:bg-slate-900 shadow-sm dark:shadow-gray-800"
-                >
-                  <div className="shrink-0 flex items-center justify-center size-14 rounded-full bg-gray-50 dark:bg-slate-800">
-                    <ItemIcon className="w-7 h-7" style={{ color: item.color }} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                    <p className="text-slate-400">{item.desc}</p>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </FadeInStagger>
+      <section className="border-t border-line bg-mist">
+        <div className={`${wrap} ${section} grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]`}>
+          <div>
+            <p className={`${label} text-primary`}>Try asking</p>
+            <h2 className={`${h2} mt-4 max-w-[14ch]`}>Ask it the way you&apos;d ask a colleague.</h2>
+          </div>
+          <ul className="border-t border-[#dfe4ea]">
+            {prompts.map((p) => (
+              <li
+                key={p}
+                className="border-b border-[#dfe4ea] py-5 text-[20px] font-semibold tracking-[-0.015em] text-ink md:text-[24px]"
+              >
+                &ldquo;{p}&rdquo;
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative md:py-24 py-16">
-        <FadeInUp className="container relative text-center">
-          <h2 className="mb-4 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
-            Stop digging through reports. Start asking.
-          </h2>
-          <p className="text-slate-400 max-w-xl mx-auto mb-8">
-            Zuri is included with SalesCenta — no setup, no extra tools. Open
-            the app and ask your first question.
-          </p>
-          <Link
-            href="https://app.salescenta.com/signup"
-            className="py-4 px-6 inline-block font-semibold tracking-wide border align-middle text-base text-center bg-primary hover:bg-primary-700 border-primary hover:border-primary-700 text-white rounded-xl hover:scale-105 transition-transform duration-300"
-          >
-            Start your free trial <FaArrowRight className="inline-block ml-2" />
-          </Link>
-        </FadeInUp>
-      </section>
+      <ClosingCta
+        title="Stop digging through reports. Start asking."
+        sub="Zuri is included with SalesCenta. No setup, no extra tools: open the app and ask your first question."
+      />
     </>
   );
 }

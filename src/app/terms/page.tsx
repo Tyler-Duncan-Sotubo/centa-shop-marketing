@@ -1,7 +1,7 @@
 import LegalLayout from "@/features/legal/ui/legal-layout";
 
 export const metadata = {
-  title: "Terms of Service — SalesCenta",
+  title: "Terms of Service",
 };
 
 export default function Page() {

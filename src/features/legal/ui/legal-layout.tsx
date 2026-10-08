@@ -1,4 +1,5 @@
-import PageHero from "@/shared/ui/page-hero";
+import { PageHero } from "@/shared/ui/site/page-hero";
+import { wrap } from "@/shared/ui/site/styles";
 
 export default function LegalLayout({
   title,
@@ -11,15 +12,11 @@ export default function LegalLayout({
 }) {
   return (
     <>
-      <PageHero title={title}>
-        <p className="text-slate-400 text-lg mt-4">Last updated: {updated}</p>
-      </PageHero>
+      <PageHero eyebrow="Legal" title={title} sub={`Last updated ${updated}`} />
 
-      <section className="relative md:py-24 py-16">
-        <div className="container relative">
-          <div className="max-w-5xl prose prose-base md:prose-lg prose-slate dark:prose-invert prose-headings:font-semibold prose-a:text-primary prose-p:my-4 prose-li:my-2 prose-h2:mt-8 prose-h2:text-xl md:prose-h2:text-2xl">
-            {children}
-          </div>
+      <section className={`${wrap} py-16 md:py-24`}>
+        <div className="prose prose-base mx-auto max-w-3xl md:prose-lg prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-ink prose-h2:mt-12 prose-h2:text-[22px] md:prose-h2:text-[26px] prose-p:text-copy prose-li:text-copy prose-a:text-primary prose-strong:text-ink">
+          {children}
         </div>
       </section>
     </>
