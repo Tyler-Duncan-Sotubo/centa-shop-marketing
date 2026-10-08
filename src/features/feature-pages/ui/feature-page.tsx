@@ -69,16 +69,8 @@ export function FeaturePage({ content }: { content: FeatureContent }) {
             </>
           )
         }
-        aside={
-          <div
-            className={cn(
-              "overflow-hidden rounded-3xl bg-white/[0.04] ring-1 ring-white/10",
-              hero.frame === "flush" ? "px-6 pt-8 sm:px-10 sm:pt-10" : "p-5 sm:p-8",
-            )}
-          >
-            {hero.visual}
-          </div>
-        }
+        aside={hero.visual}
+        asideFlush={hero.frame === "flush"}
       />
 
       {content.spotlights.map((s, i) => (

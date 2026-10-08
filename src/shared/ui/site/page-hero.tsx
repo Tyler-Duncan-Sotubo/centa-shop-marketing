@@ -13,6 +13,7 @@ export function PageHero({
   sub,
   actions,
   aside,
+  asideFlush = false,
   overlap = false,
   className,
   children,
@@ -22,6 +23,11 @@ export function PageHero({
   sub?: React.ReactNode;
   actions?: React.ReactNode;
   aside?: React.ReactNode;
+  /**
+   * Sit the aside on the header's bottom edge, for open-bottomed device
+   * frames (the iPad and phone screens) that should rise out of the navy.
+   */
+  asideFlush?: boolean;
   /** Height of the white band at the bottom, for content that straddles. */
   overlap?: false | "sm" | "md" | "lg";
   className?: string;
@@ -40,9 +46,18 @@ export function PageHero({
       {overlap && (
         <div aria-hidden className={cn("absolute inset-x-0 bottom-0 bg-white", band[overlap])} />
       )}
-      <div className={`${wrap} relative pb-20 pt-32 md:pb-28 md:pt-44 ${overlap ? "pb-0! md:pb-0!" : ""}`}>
-        <div className={aside ? "grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-16" : ""}>
-          <div className="min-w-0">
+      <div className={`${wrap} relative pb-20 pt-32 md:pb-28 md:pt-44 ${overlap || asideFlush ? "pb-0! md:pb-0!" : ""}`}>
+        <div
+          className={
+            aside
+              ? cn(
+                  "grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16",
+                  asideFlush ? "lg:items-end" : "lg:items-center",
+                )
+              : ""
+          }
+        >
+          <div className={cn("min-w-0", asideFlush && "lg:pb-28")}>
             {eyebrow && <p className={`${label} text-sky`}>{eyebrow}</p>}
             <h1 className="mt-5 max-w-[18ch] text-balance text-[40px] leading-[1.04] font-bold tracking-[-0.045em] sm:text-[52px] md:text-[64px]">
               {title}
