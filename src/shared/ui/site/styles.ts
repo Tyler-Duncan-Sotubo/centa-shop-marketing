@@ -4,7 +4,7 @@
  * share them without a wrapper component per element.
  */
 
-export const wrap = "mx-auto w-full max-w-[1200px] px-5 md:px-8";
+export const wrap = "mx-auto w-full max-w-[1300px] px-5 md:px-8";
 
 /** Small uppercase label above a heading. Add a colour per surface. */
 export const label = "text-[12px] font-semibold uppercase tracking-[0.16em]";

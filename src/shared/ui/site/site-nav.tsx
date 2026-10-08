@@ -64,7 +64,7 @@ export function SiteNav() {
         solid ? "border-b border-white/10 bg-navy/95 backdrop-blur-md" : "border-b border-transparent",
       )}
     >
-      <div className="relative mx-auto flex h-16 max-w-[1200px] items-center justify-between gap-6 px-5 md:h-20 md:px-8">
+      <div className="relative mx-auto flex h-16 max-w-[1300px] items-center justify-between gap-6 px-5 md:h-20 md:px-8">
         <Link href="/" aria-label="SalesCenta home" className="shrink-0">
           <Logo tone="light" />
         </Link>
@@ -199,7 +199,7 @@ function MenuItem({
 
 function ProductPanel({ onNavigate }: { onNavigate: () => void }) {
   return (
-    <div className={cn(panel, "mx-auto max-w-[1040px] p-0")}>
+    <div className={cn(panel, "mx-auto max-w-[1100px] p-0")}>
       <div className="grid grid-cols-3 gap-2 p-4">
         {featureGroups.map((g) => (
           <div key={g.title}>

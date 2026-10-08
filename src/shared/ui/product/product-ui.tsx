@@ -453,9 +453,12 @@ export function BrowserShot({
  */
 export function IpadShot({
   screen = "checkout",
+  closed = false,
   className,
 }: {
   screen?: "sell" | "checkout" | "offline" | "close-day" | "locations";
+  /** Draw the whole iPad, bezel all round, for a frame that floats. */
+  closed?: boolean;
   className?: string;
 }) {
   const alts = {
@@ -468,11 +471,19 @@ export function IpadShot({
   return (
     <div
       className={cn(
-        "rounded-t-[24px] bg-[#0d0f12] p-[8px] pb-0 sm:rounded-t-[30px] sm:p-[11px] sm:pb-0",
+        "bg-[#0d0f12] p-[8px] sm:p-[11px]",
+        closed
+          ? "rounded-[24px] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] sm:rounded-[30px]"
+          : "rounded-t-[24px] pb-0 sm:rounded-t-[30px] sm:pb-0",
         className,
       )}
     >
-      <div className="relative aspect-[1600/1055] overflow-hidden rounded-t-[16px] bg-white sm:rounded-t-[20px]">
+      <div
+        className={cn(
+          "relative aspect-[1600/1055] overflow-hidden bg-white",
+          closed ? "rounded-[16px] sm:rounded-[20px]" : "rounded-t-[16px] sm:rounded-t-[20px]",
+        )}
+      >
         <Image
           src={`/images/pos/pos-${screen}.webp`}
           alt={alts[screen]}

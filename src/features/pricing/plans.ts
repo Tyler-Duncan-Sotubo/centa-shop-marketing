@@ -3,17 +3,36 @@
  * (stores, team, credits, data retention); almost every feature ships on
  * every tier, and a handful of setup-heavy items are Enterprise-only.
  *
- * Sources: admin/src/features/subscription/config/plan-features.ts (the
+ * Features: admin/src/features/subscription/config/plan-features.ts (the
  * comparison table) and backend/src/domains/subscriptions/
- * plan-features.map.ts (what's actually gated). Prices live in the
- * database behind an authenticated endpoint, so they're copied here:
- * keep them in step with the admin's billing page. Yearly applies the
- * admin's "Save up to 17%" as a flat ~17% discount, for display.
+ * plan-features.map.ts (what's actually gated). Prices: the
+ * subscription_plans table, copied by hand because the plans endpoint
+ * needs a login. Keep them in step with the admin's billing page; last
+ * copied 2026-10-08. Free and Enterprise aren't self-serve (the admin's
+ * plan picker hides both), so Enterprise shows as custom.
  */
+
+export type BillingCycle = "monthly" | "quarterly" | "semiannual" | "annual";
+
+/** Mirrors admin/src/features/subscription/config/billing-cycle.ts. */
+export const cycles: {
+  id: BillingCycle;
+  label: string;
+  /** For the phone-width switch. */
+  short: string;
+  months: number;
+  per: string;
+}[] = [
+  { id: "monthly", label: "Monthly", short: "Monthly", months: 1, per: "month" },
+  { id: "quarterly", label: "Quarterly", short: "Quarterly", months: 3, per: "quarter" },
+  { id: "semiannual", label: "Every 6 months", short: "6 months", months: 6, per: "6 months" },
+  { id: "annual", label: "Yearly", short: "Yearly", months: 12, per: "year" },
+];
 
 export interface Tier {
   name: string;
-  price: number | "custom";
+  /** NGN per billing period, or "custom". */
+  prices: Record<BillingCycle, number> | "custom";
   blurb: string;
   features: string[];
   highlight?: boolean;
@@ -22,35 +41,50 @@ export interface Tier {
 export const tiers: Tier[] = [
   {
     name: "Starter",
-    price: 8000,
+    prices: { monthly: 7140, quarterly: 25000, semiannual: 48000, annual: 86000 },
     blurb: "Everything you need to start selling.",
     features: ["1 store", "5 team members", "200 credits a month", "30 days of analytics history", "Online store, quotes and invoicing", "Email support"],
   },
   {
     name: "Growth",
-    price: 18000,
+    prices: { monthly: 19000, quarterly: 57500, semiannual: 115000, annual: 191500 },
     blurb: "More room for a second store and a bigger team.",
     features: ["2 stores", "10 team members", "800 credits a month", "90 days of analytics history", "Everything in Starter"],
     highlight: true,
   },
   {
     name: "Pro",
-    price: 35000,
+    prices: { monthly: 38500, quarterly: 115000, semiannual: 191500, annual: 345000 },
     blurb: "For established brands running several stores.",
     features: ["5 stores", "25 team members", "2,000 credits a month", "A year of analytics history", "Everything in Growth", "Priority support"],
   },
   {
     name: "Enterprise",
-    price: "custom",
+    prices: "custom",
     blurb: "We build your store and move you over.",
     features: ["Everything in Pro, with custom limits", "Your own domain", "Partner API access", "Zoho integration", "Store build and free migration", "Dedicated account manager"],
   },
 ];
 
-export const YEARLY_DISCOUNT = 0.83;
+/** Per-month rate for a cycle, rounded to the naira. */
+export function monthlyRate(tier: Tier, cycle: BillingCycle) {
+  if (tier.prices === "custom") return 0;
+  const months = cycles.find((c) => c.id === cycle)!.months;
+  return Math.round(tier.prices[cycle] / months);
+}
 
-export function yearlyMonthly(price: number) {
-  return Math.round((price * 12 * YEARLY_DISCOUNT) / 12);
+/** % saved against paying monthly for the same months; 0 when it saves nothing. */
+export function savingsPercent(tier: Tier, cycle: BillingCycle) {
+  if (tier.prices === "custom" || cycle === "monthly") return 0;
+  const months = cycles.find((c) => c.id === cycle)!.months;
+  const monthlyTotal = tier.prices.monthly * months;
+  const saved = Math.round(((monthlyTotal - tier.prices[cycle]) / monthlyTotal) * 100);
+  return Math.max(0, saved);
+}
+
+/** The best saving any plan offers on a cycle, for the toggle's badge. */
+export function bestSaving(cycle: BillingCycle) {
+  return Math.max(0, ...tiers.map((t) => savingsPercent(t, cycle)));
 }
 
 export function formatNaira(price: number) {
@@ -133,8 +167,8 @@ export const pricingFaqs = [
     a: "Paystack's standard processing fees apply as usual, and we don't add our own markup on naira payments.",
   },
   {
-    q: "Can I switch between monthly and yearly billing?",
-    a: "Yes, any time from your billing settings. Switching to yearly applies the discount from your next billing cycle.",
+    q: "Can I pay quarterly or yearly?",
+    a: "Yes. Pay monthly, every 3 months, every 6 months or yearly, and switch from your billing settings. On Growth and Pro, paying yearly works out cheapest per month.",
   },
   {
     q: "What happens to my store if I downgrade?",

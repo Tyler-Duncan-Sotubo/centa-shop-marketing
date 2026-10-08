@@ -50,9 +50,15 @@ export const onlineStore: FeatureContent = {
     title: "Your own online store, live in minutes.",
     sub: "A storefront you edit yourself, with checkout by card, bank transfer or WhatsApp. No developer, and no plugins to stitch together.",
     visual: (
-      <div className="relative">
-        <BrowserShot src="/showcase/demo.png" url="demo.salescenta.com" alt="A SalesCenta storefront" />
-        <StorefrontEditor className="relative -mt-16 ml-auto w-[88%] sm:-mt-24 sm:w-[78%]" />
+      <div className="relative sm:pb-10 sm:pl-10">
+        <BrowserShot
+          src="/showcase/demo.png"
+          url="demo.salescenta.com"
+          alt="A SalesCenta storefront"
+          className="shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)]"
+        />
+        <Toast className="absolute -top-4 right-4">Homepage published</Toast>
+        <WhatsAppOrder className="absolute -left-2 bottom-0 hidden w-[250px] sm:block" />
       </div>
     ),
   },
@@ -113,8 +119,7 @@ export const pos: FeatureContent = {
   hero: {
     title: "Sell faster at the counter.",
     sub: "The SalesCenta POS app runs on iPad. Tap products into the cart, take cash, card machine or transfer, and every sale lands in the same orders and stock as your website.",
-    frame: "flush",
-    visual: <IpadShot screen="sell" />,
+    visual: <IpadShot screen="sell" closed />,
   },
   spotlights: [
     {
