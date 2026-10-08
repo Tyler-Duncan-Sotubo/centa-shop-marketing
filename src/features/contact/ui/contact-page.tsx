@@ -75,7 +75,7 @@ export default function ContactPage() {
             <p className={`${label} text-primary`}>Moving to SalesCenta?</p>
             <h2 className={`${h2} mt-4 max-w-[16ch]`}>We&apos;ll bring your store with you.</h2>
             <p className={`${body} mt-5 max-w-[48ch]`}>
-              Import your products from a Shopify CSV yourself, or go
+              Import your products from a spreadsheet yourself, or go
               Enterprise and we migrate the whole store for you, free.
             </p>
             <ArrowLink href="/page-pricing" className="mt-8">

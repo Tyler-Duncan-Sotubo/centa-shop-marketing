@@ -55,8 +55,8 @@ export const inventory: FeatureContent = {
     {
       label: "Products",
       title: "Products in every option they come in.",
-      body: "Sizes, colours and any other option, with each variant carrying its own price and stock. Define your colours once and pick them as swatches. Bring your catalogue in from a CSV, including a Shopify export.",
-      points: ["Options and variants", "Colour swatches", "CSV and Shopify import", "Bulk actions"],
+      body: "Sizes, colours and any other option, with each variant carrying its own price and stock. Define your colours once and pick them as swatches. Bring your catalogue in from a CSV or Excel file using our template.",
+      points: ["Options and variants", "Colour swatches", "Spreadsheet import", "Bulk actions"],
       visual: <VariantMatrix className="mx-auto max-w-[460px]" />,
     },
     {
@@ -76,7 +76,7 @@ export const inventory: FeatureContent = {
   capabilities: [
     { icon: Package, title: "Bundles", body: "Sell a set as one listing with its own price, while each item's stock still tracks." },
     { icon: Layers, title: "Collections", body: "Group products for your menus, homepage and the POS." },
-    { icon: Upload, title: "CSV import", body: "Import products from a spreadsheet or a Shopify export." },
+    { icon: Upload, title: "Spreadsheet import", body: "Import products, variants and prices from a CSV or Excel file using our template." },
     { icon: Video, title: "Photos and video", body: "A photo gallery and one short video for every product." },
     { icon: WandSparkles, title: "AI descriptions", body: "Draft product descriptions with AI, then make them yours." },
     { icon: Star, title: "Reviews", body: "Reviews from real buyers on your product pages." },

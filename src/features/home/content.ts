@@ -59,7 +59,7 @@ export type Chapter = (typeof chapters)[number];
 
 export const steps = [
   { title: "Sign up free", body: "Create your account in a couple of minutes." },
-  { title: "Add products", body: "Photos, prices and sizes. Or import from Shopify." },
+  { title: "Add products", body: "Photos, prices and sizes, or import a spreadsheet." },
   { title: "Share your link", body: "Post it on Instagram and WhatsApp and start taking orders." },
 ];
 
@@ -82,6 +82,6 @@ export const faqs = [
   },
   {
     q: "Can you move my store from Shopify?",
-    a: "Yes. Import your products from a Shopify CSV, or go Enterprise and we migrate the whole store for you.",
+    a: "Yes. Import your products from a spreadsheet using our template, bring your customers over from a Shopify export, or go Enterprise and we migrate the whole store for you.",
   },
 ];
