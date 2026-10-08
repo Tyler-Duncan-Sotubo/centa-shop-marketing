@@ -130,7 +130,7 @@ export const pricingFaqs = [
   },
   {
     q: "Do you charge transaction fees on top of the plan price?",
-    a: "Paystack's standard processing fees apply as usual, but we don't add our own markup. Stripe and Fincra support is coming soon.",
+    a: "Paystack's standard processing fees apply as usual, and we don't add our own markup on naira payments.",
   },
   {
     q: "Can I switch between monthly and yearly billing?",

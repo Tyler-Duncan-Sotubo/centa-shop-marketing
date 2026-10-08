@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CreditCard, Landmark, Sparkles, Store } from "lucide-react";
+import { CreditCard, Earth, Landmark, Sparkles, Store } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { SIGNUP_URL, TRIAL_NOTE } from "@/shared/config/site";
 import { StoreBadges } from "@/shared/ui/store-badges";
@@ -13,6 +13,7 @@ import { ChannelFlow } from "@/shared/ui/product/channel-flow";
 import { PhoneShot, ZuriChat } from "@/shared/ui/product/product-ui";
 import { stores } from "@/features/showcase/stores";
 import { StoreCard } from "@/features/showcase/ui/store-card";
+import { featureBySlug } from "@/features/feature-pages/catalog";
 import { faqs, problems, steps } from "../content";
 import { HomeHero } from "./home-hero";
 import { HomeChapters } from "./home-chapters";
@@ -24,6 +25,7 @@ export default function HomePage() {
       <Payments />
       <OneQueue />
       <HomeChapters />
+      <MoreFeatures />
       <ProofBand />
       <Zuri />
       <Showcase />
@@ -41,12 +43,13 @@ function Payments() {
     { label: "Cards", icon: <CreditCard className="size-5" /> },
     { label: "WhatsApp checkout", icon: <SiWhatsapp className="size-5" /> },
     { label: "In-store POS", icon: <Store className="size-5" /> },
+    { label: "International cards", icon: <Earth className="size-5" /> },
   ];
   return (
     <section className={`${wrap} pt-10 md:pt-14`}>
       <div className="grid items-center gap-6 border-y border-line py-8 md:grid-cols-[230px_1fr]">
         <p className={`${label} text-[#5b6676]`}>Get paid your way</p>
-        <ul className="flex flex-wrap gap-x-9 gap-y-4 text-[15px] font-semibold text-[#334155]">
+        <ul className="flex flex-wrap gap-x-8 gap-y-4 text-[15px] font-semibold text-[#334155]">
           {items.map((i) => (
             <li key={i.label} className="flex items-center gap-2.5">
               <span className="text-[#64748b]">{i.icon}</span>
@@ -83,6 +86,38 @@ function OneQueue() {
           detailClassName="text-[#6b7280]"
           panelClassName="shadow-[0_30px_60px_-30px_rgba(0,24,49,0.25)]"
         />
+      </div>
+    </section>
+  );
+}
+
+/** The features the chapters above don't cover, one link each. */
+function MoreFeatures() {
+  const items = (["bookings", "sell-abroad", "orders", "marketing", "reports", "mobile-app"] as const)
+    .map((s) => featureBySlug(s))
+    .filter((f) => f !== undefined);
+  return (
+    <section className="border-t border-line bg-mist">
+      <div className={`${wrap} ${section}`}>
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p className={`${label} text-primary`}>There&apos;s more</p>
+            <h2 className={`${h2} mt-4 max-w-[18ch]`}>Everything else your business runs on.</h2>
+          </div>
+          <ArrowLink href="/features">See all features</ArrowLink>
+        </div>
+        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-[#dfe4ea] bg-[#dfe4ea] sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((f) => (
+            <Link key={f.slug} href={f.href} className="group bg-white p-7 transition-colors hover:bg-[#fafbfd]">
+              <div className="flex items-center justify-between">
+                <f.icon className="size-5 text-primary" />
+                {f.isNew && <span className="text-[12px] font-semibold text-primary">New</span>}
+              </div>
+              <h3 className="mt-5 text-[18px] font-bold text-ink">{f.name}</h3>
+              <p className="mt-1.5 text-[15px] leading-[1.55] text-copy">{f.blurb}</p>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

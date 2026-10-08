@@ -14,11 +14,3 @@ export const SUPPORT_EMAIL = "hello@salescenta.com";
 export const SUPPORT_WHATSAPP_URL: string | null = null;
 
 export const TRIAL_NOTE = "14 days free. No card required.";
-
-export const mainNav = [
-  { href: "/page-pricing", label: "Pricing" },
-  { href: "/zuri", label: "Zuri AI" },
-  { href: "/showcase", label: "Showcase" },
-  { href: "/learn", label: "Learn" },
-  { href: "/page-aboutus", label: "About" },
-];

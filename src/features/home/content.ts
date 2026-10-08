@@ -10,14 +10,6 @@ export const hero = {
   sub: "Your own store link, a POS for the counter, invoices for wholesale buyers and one stock count across every location. Built for how Nigeria pays.",
 };
 
-export const payments = [
-  "Paystack",
-  "Bank transfer",
-  "Cards",
-  "WhatsApp checkout",
-  "In-store POS",
-] as const;
-
 export const problems = [
   { title: "Orders scattered across DMs", fix: "Every order lands in one queue, wherever it started." },
   { title: "Confirming transfers from screenshots", fix: "Payments are recorded against the order they belong to." },
@@ -27,6 +19,7 @@ export const problems = [
 export const chapters = [
   {
     key: "online",
+    href: "/features/online-store",
     index: "01",
     label: "Sell online",
     title: "Your own online store, live in minutes.",
@@ -35,6 +28,7 @@ export const chapters = [
   },
   {
     key: "store",
+    href: "/features/pos",
     index: "02",
     label: "Sell in store",
     title: "Sell faster at the counter.",
@@ -43,6 +37,7 @@ export const chapters = [
   },
   {
     key: "paid",
+    href: "/features/invoices",
     index: "03",
     label: "Get paid",
     title: "Quotes, invoices and transfers, tracked to the naira.",
@@ -51,6 +46,7 @@ export const chapters = [
   },
   {
     key: "run",
+    href: "/features/inventory",
     index: "04",
     label: "Run the business",
     title: "One stock count across every shop and warehouse.",

@@ -1,3 +1,4 @@
+import { ArrowLink } from "@/shared/ui/site/button-link";
 import { Glow } from "@/shared/ui/site/glow";
 import { body, h2, label, wrap } from "@/shared/ui/site/styles";
 import {
@@ -59,6 +60,9 @@ export function HomeChapters() {
                     </li>
                   ))}
                 </ul>
+                <ArrowLink href={c.href} className="mt-8">
+                  Learn more
+                </ArrowLink>
               </div>
               <div className="overflow-hidden rounded-3xl bg-mist">{visuals[c.key]}</div>
             </div>
@@ -93,7 +97,12 @@ function InStore({ c }: { c: Chapter }) {
             </p>
             <h2 className={`${h2} mt-4 max-w-[17ch]`}>{c.title}</h2>
           </div>
-          <p className={`${body} max-w-[52ch]`}>{c.body}</p>
+          <div>
+            <p className={`${body} max-w-[52ch]`}>{c.body}</p>
+            <ArrowLink href={c.href} className="mt-6">
+              Learn more about the POS
+            </ArrowLink>
+          </div>
         </div>
         <div className="relative mt-14 overflow-hidden rounded-[28px] bg-navy px-5 pt-10 sm:px-12 md:mt-16 md:px-20 md:pt-16">
           <Glow />

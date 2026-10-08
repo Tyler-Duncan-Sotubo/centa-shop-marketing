@@ -10,26 +10,33 @@ import { label, wrap } from "./styles";
 
 const columns: { title: string; links: { label: string; href: string }[] }[] = [
   {
+    title: "Features",
+    links: [
+      { label: "Online store", href: "/features/online-store" },
+      { label: "Point of sale", href: "/features/pos" },
+      { label: "Bookings", href: "/features/bookings" },
+      { label: "Sell abroad", href: "/features/sell-abroad" },
+      { label: "Payments", href: "/features/payments" },
+      { label: "Products and inventory", href: "/features/inventory" },
+      { label: "All features", href: "/features" },
+    ],
+  },
+  {
     title: "Product",
     links: [
       { label: "Pricing", href: "/page-pricing" },
       { label: "Zuri AI", href: "/zuri" },
+      { label: "Mobile app", href: "/features/mobile-app" },
       { label: "Showcase", href: "/showcase" },
       { label: "Developers", href: "/developer" },
     ],
   },
   {
-    title: "Company",
-    links: [
-      { label: "About", href: "/page-aboutus" },
-      { label: "Learn", href: "/learn" },
-      { label: "Contact", href: "/contact-one" },
-    ],
-  },
-  {
-    title: "Support",
+    title: "Resources",
     links: [
       { label: "Help centre", href: HELP_URL },
+      { label: "Getting started", href: `${HELP_URL}getting-started` },
+      { label: "Learn", href: "/learn" },
       { label: SUPPORT_EMAIL, href: `mailto:${SUPPORT_EMAIL}` },
       ...(SUPPORT_WHATSAPP_URL
         ? [{ label: "WhatsApp", href: SUPPORT_WHATSAPP_URL }]
@@ -37,10 +44,10 @@ const columns: { title: string; links: { label: string; href: string }[] }[] = [
     ],
   },
   {
-    title: "Legal",
+    title: "Company",
     links: [
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Privacy Policy", href: "/privacy" },
+      { label: "About", href: "/page-aboutus" },
+      { label: "Contact", href: "/contact-one" },
     ],
   },
 ];
@@ -79,8 +86,15 @@ export function SiteFooter() {
       </div>
       <div className={wrap}>
         <div className="flex flex-col justify-between gap-2 border-t border-white/10 py-8 text-[13px] sm:flex-row">
-          <span>© {new Date().getFullYear()} SalesCenta. All rights reserved.</span>
-          <span>Built by TXD Agency, Croydon, UK</span>
+          <span>© {new Date().getFullYear()} SalesCenta. Built by TXD Agency, Croydon, UK.</span>
+          <span className="flex gap-6">
+            <Link href="/terms" className="transition-colors hover:text-white">
+              Terms of Service
+            </Link>
+            <Link href="/privacy" className="transition-colors hover:text-white">
+              Privacy Policy
+            </Link>
+          </span>
         </div>
       </div>
     </footer>
