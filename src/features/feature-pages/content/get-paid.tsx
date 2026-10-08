@@ -76,7 +76,7 @@ export const payments: FeatureContent = {
     { icon: Wallet, title: "Payout page", body: "Local and international payouts in one place." },
   ],
   faqs: [
-    { q: "Do you charge transaction fees?", a: "Paystack's standard processing fees apply as usual, but we don't add our own markup on naira payments." },
+    { q: "Do you charge transaction fees?", a: "On Paystack card and bank payments, SalesCenta takes 1% of each sale and Paystack charges its own fee separately. Bank transfers into your own account, WhatsApp orders and cash have no fee from us." },
     { q: "Do I need Paystack?", a: "No. You can take bank transfers to your own account and WhatsApp orders without it, and turn Paystack on whenever you want card payments." },
     { q: "Can customers abroad pay me?", a: "Yes. With sell abroad switched on, shoppers can pay by card in US dollars, pounds, euros or Canadian dollars, and you're paid out in naira." },
   ],

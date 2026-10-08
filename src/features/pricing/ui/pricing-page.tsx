@@ -17,7 +17,7 @@ const included = [
   {
     icon: CreditCard,
     title: "Paystack, transfer and cards",
-    desc: "Take payment the way your customers already pay, with no markup from us.",
+    desc: "Take payment the way your customers already pay. Transfers to your own account carry no fee from us.",
   },
   {
     icon: Store,

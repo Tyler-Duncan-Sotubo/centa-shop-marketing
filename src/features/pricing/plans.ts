@@ -164,7 +164,7 @@ export const pricingFaqs = [
   },
   {
     q: "Do you charge transaction fees on top of the plan price?",
-    a: "Paystack's standard processing fees apply as usual, and we don't add our own markup on naira payments.",
+    a: "On Paystack card and bank payments, SalesCenta takes 1% of each sale and Paystack charges its own fee separately. Bank transfers into your own account, WhatsApp orders and cash have no fee from us.",
   },
   {
     q: "Can I pay quarterly or yearly?",
