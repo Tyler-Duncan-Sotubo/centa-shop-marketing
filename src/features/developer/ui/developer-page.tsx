@@ -1,123 +1,153 @@
-"use client";
+import { SiGoogleanalytics, SiMeta, SiPinterest, SiTiktok, SiZoho } from "react-icons/si";
+import Image from "next/image";
+import { API_DOCS_URL } from "@/shared/config/site";
+import { ButtonLink } from "@/shared/ui/site/button-link";
+import { ClosingCta } from "@/shared/ui/site/closing-cta";
+import { PageHero } from "@/shared/ui/site/page-hero";
+import { body, h2, label, section, wrap } from "@/shared/ui/site/styles";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { HiOutlineCode, HiOutlineKey, HiOutlineLightningBolt } from "react-icons/hi";
-import { IconType } from "react-icons";
-import PageHeroShell from "@/shared/ui/page-hero-shell";
-import { FadeInUp, FadeInStagger, StaggerItem } from "@/shared/ui/motion";
-import ContactCta from "@/features/home/ui/contact-cta";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
-
-interface Capability {
-  icon: IconType;
-  title: string;
-  desc: string;
-}
-
-const capabilities: Capability[] = [
+/** The Partner API, from backend/src/channels/external/v1. */
+const resources = [
   {
-    icon: HiOutlineKey,
-    title: "API access with scoped keys",
-    desc: "Generate API keys scoped to exactly what your integration needs, with sensible rate limits built in.",
+    name: "Products",
+    does: "List and search products, browse a category, and read a product by its slug.",
+    routes: ["GET /v1/products", "GET /v1/products/category/{slug}", "GET /v1/products/{slug}"],
+    scopes: ["products:read"],
   },
   {
-    icon: HiOutlineLightningBolt,
-    title: "Real-time webhooks",
-    desc: "Get notified the moment an order, payment, or inventory change happens — no polling required.",
+    name: "Orders",
+    does: "List and search orders and read one in full, including its payment and delivery status.",
+    routes: ["GET /v1/orders", "GET /v1/orders/{id}"],
+    scopes: ["orders:read"],
   },
   {
-    icon: HiOutlineCode,
-    title: "Build on your storefront data",
-    desc: "Pull products, orders, and customers into your own tools, or push updates back into your store.",
+    name: "Customers",
+    does: "List, search and read customers with their addresses, or create a new one.",
+    routes: ["GET /v1/customers", "GET /v1/customers/{id}", "POST /v1/customers"],
+    scopes: ["customers:read", "customers:write"],
+  },
+  {
+    name: "Inventory",
+    does: "A stock overview you can search by product or SKU and filter by location.",
+    routes: ["GET /v1/inventory"],
+    scopes: ["inventory:read"],
   },
 ];
 
-const codeSample = `curl https://api.salescenta.com/v1/orders \\
-  -H "Authorization: Bearer sk_live_..." \\
-  -H "Content-Type: application/json"`;
+const facts = [
+  { title: "Scoped keys", body: "Create keys in Settings → API & Webhooks and give each one only the scopes it needs." },
+  { title: "Rate limits", body: "60 reads and 10 writes a minute per company." },
+  { title: "Credits", body: "Each call uses one credit from your balance. Responses tell you how many are left." },
+];
+
+const integrations = [
+  { label: "Paystack", node: <Image src="/images/payments/paystack.png" alt="" width={20} height={20} className="size-5" /> },
+  { label: "Google Analytics", node: <SiGoogleanalytics className="size-5 text-[#e37400]" /> },
+  { label: "Meta Pixel", node: <SiMeta className="size-5 text-[#0866ff]" /> },
+  { label: "TikTok Pixel", node: <SiTiktok className="size-5 text-ink" /> },
+  { label: "Pinterest Tag", node: <SiPinterest className="size-5 text-[#e60023]" /> },
+  { label: "Zoho", node: <SiZoho className="size-5 text-[#e42527]" /> },
+];
+
+const sample = `curl https://api.salescenta.com/v1/orders \\
+  -H "X-API-Key: sk_live_…"`;
 
 export default function DeveloperPage() {
   return (
     <>
-      <PageHeroShell>
-        <div className="grid md:grid-cols-2 grid-cols-1 items-center gap-7.5 mt-10">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: EASE }}
-          >
-            <h3 className="md:text-6xl text-4xl leading-tight font-bold text-black dark:text-white max-w-2xl">
-              Build on top of your store
-            </h3>
-            <p className="text-slate-400 text-xl max-w-2xl mt-5">
-              A real API and webhooks, available on Pro and Enterprise
-              plans — connect your own tools and workflows to your store
-              data.
-            </p>
-
-            <div className="mt-6">
-              <Link
-                href="/page-pricing"
-                className="py-2 px-5 inline-flex items-center font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-primary-700 border-primary hover:border-primary-700 text-white rounded-md"
-              >
-                See Pro plan
-              </Link>
+      <PageHero
+        eyebrow="Developers"
+        title="Build on top of your store."
+        sub="The Partner API lets your own tools read products, orders, customers and stock, and add customers, with keys you scope yourself. It's part of the Enterprise plan."
+        actions={
+          <>
+            <ButtonLink href={API_DOCS_URL} variant="light" arrow>
+              Read the API docs
+            </ButtonLink>
+            <ButtonLink href="/contact-one" variant="ghost">
+              Talk to us about Enterprise
+            </ButtonLink>
+          </>
+        }
+        aside={
+          <div className="overflow-hidden rounded-2xl bg-[#0b1626] ring-1 ring-white/10">
+            <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-3">
+              <span className="size-2.5 rounded-full bg-white/15" />
+              <span className="size-2.5 rounded-full bg-white/15" />
+              <span className="size-2.5 rounded-full bg-white/15" />
+              <span className="ml-3 text-[12px] text-white/40">Terminal</span>
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
-            className="rounded-lg bg-slate-900 p-6 shadow-lg overflow-x-auto"
-          >
-            <pre className="text-sm text-emerald-400">
-              <code>{codeSample}</code>
+            <pre className="overflow-x-auto p-6 text-[14px] leading-[1.7] text-[#b8d4ff]">
+              <code>{sample}</code>
             </pre>
-          </motion.div>
-        </div>
-      </PageHeroShell>
+          </div>
+        }
+      />
 
-      <section className="relative md:py-24 py-16">
-        <div className="container relative">
-          <FadeInUp className="grid grid-cols-1 pb-8 text-center">
-            <h3 className="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
-              What you can build
-            </h3>
-            <p className="text-slate-400 max-w-xl mx-auto">
-              Everything your storefront can do, your own tools can do too.
-            </p>
-          </FadeInUp>
-
-          <FadeInStagger className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7.5 mt-4">
-            {capabilities.map((item) => {
-              const Icon = item.icon;
-              return (
-                <StaggerItem
-                  key={item.title}
-                  hover
-                  className="group relative lg:px-6 mt-4 rounded-xl overflow-hidden text-center"
-                >
-                  <div className="flex items-center justify-center size-18 mx-auto rounded-full bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800">
-                    <Icon className="w-8 h-8 text-primary" />
-                  </div>
-
-                  <div className="mt-6">
-                    <span className="text-xl font-medium">{item.title}</span>
-                    <p className="text-slate-400 transition duration-500 ease-in-out mt-3">
-                      {item.desc}
-                    </p>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </FadeInStagger>
+      <section className={`${wrap} ${section}`}>
+        <p className={`${label} text-primary`}>Partner API</p>
+        <h2 className={`${h2} mt-4 max-w-[16ch]`}>What you can reach.</h2>
+        <div className="mt-12 border-t border-ink">
+          {resources.map((r) => (
+            <div key={r.name} className="grid gap-4 border-b border-line py-8 md:grid-cols-[180px_minmax(0,1fr)_minmax(0,1fr)] md:gap-10">
+              <h3 className="text-[20px] font-bold text-ink">{r.name}</h3>
+              <div>
+                <p className="text-[16px] leading-[1.6] text-copy">{r.does}</p>
+                <p className="mt-3 flex flex-wrap gap-2">
+                  {r.scopes.map((s) => (
+                    <code key={s} className="text-[13px] text-primary">
+                      {s}
+                    </code>
+                  ))}
+                </p>
+              </div>
+              <ul className="space-y-1.5">
+                {r.routes.map((route) => (
+                  <li key={route}>
+                    <code className="text-[13px] text-ink">{route}</code>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        <ContactCta className="container relative md:mt-24 mt-16" />
+        <div className="mt-16 grid gap-10 md:grid-cols-3">
+          {facts.map((f) => (
+            <div key={f.title}>
+              <h3 className="text-[17px] font-bold text-ink">{f.title}</h3>
+              <p className={`${body} mt-2`}>{f.body}</p>
+            </div>
+          ))}
+        </div>
       </section>
+
+      <section className="border-t border-line bg-mist">
+        <div className={`${wrap} ${section}`}>
+          <p className={`${label} text-primary`}>Integrations</p>
+          <h2 className={`${h2} mt-4 max-w-[18ch]`}>Connects to the tools you already use.</h2>
+          <p className={`${body} mt-5 max-w-[54ch]`}>
+            Payments, ad pixels and accounting plug in from your settings, no
+            code needed.
+          </p>
+          <ul className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-[#dfe4ea] bg-[#dfe4ea] sm:grid-cols-2 lg:grid-cols-3">
+            {integrations.map((i) => (
+              <li key={i.label} className="flex items-center gap-3 bg-white px-6 py-5 text-[16px] font-semibold text-ink">
+                {i.node}
+                {i.label}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <ClosingCta
+        title="Need a custom integration?"
+        sub="Enterprise includes the Partner API, Zoho and a team that helps you connect the rest."
+        primary={{ label: "Talk to us", href: "/contact-one" }}
+        secondary={{ label: "See pricing", href: "/page-pricing" }}
+        note={null}
+      />
     </>
   );
 }

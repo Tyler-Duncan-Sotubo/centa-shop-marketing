@@ -1,7 +1,7 @@
 import LegalLayout from "@/features/legal/ui/legal-layout";
 
 export const metadata = {
-  title: "Privacy Policy — SalesCenta",
+  title: "Privacy Policy",
 };
 
 export default function Page() {

@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Geist } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "@/shared/assets/css/tailwind.css";
-import Navbar from "@/shared/ui/navbar";
-import Footer from "@/shared/ui/footer";
-import CookieModal from "@/shared/ui/cookie-modal";
-import ScrollToTop from "@/shared/ui/scroll-to-top";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+import { SiteNav } from "@/shared/ui/site/site-nav";
+import { SiteFooter } from "@/shared/ui/site/site-footer";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -16,9 +11,13 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "SalesCenta — Sell the way your customers already buy",
+  metadataBase: new URL("https://salescenta.com"),
+  title: {
+    default: "SalesCenta — Sell online, in store and on WhatsApp",
+    template: "%s · SalesCenta",
+  },
   description:
-    "A commerce platform built for how Nigerian merchants sell — WhatsApp checkout, bank transfer, and NGN pricing, all built in from day one.",
+    "A commerce platform built for how Nigerian merchants sell: your own store, WhatsApp checkout, a POS for the counter, invoices and one stock count across every location.",
 };
 
 export default function RootLayout({
@@ -27,15 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("light", "font-sans", geist.variable)}>
-      <body
-        className={`${jakarta.variable} font-jakarta text-base text-black dark:text-white dark:bg-slate-900`}
-      >
-        <Navbar />
-        {children}
-        <Footer />
-        <ScrollToTop />
-        {/* <CookieModal /> */}
+    <html lang="en" className={jakarta.variable}>
+      <body className="font-jakarta text-base">
+        <SiteNav />
+        <main>{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

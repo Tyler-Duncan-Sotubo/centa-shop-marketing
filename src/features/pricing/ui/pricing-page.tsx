@@ -1,79 +1,87 @@
-import { FadeInUp } from "@/shared/ui/motion";
-import ContactCta from "@/features/home/ui/contact-cta";
-import PricingHero from "./pricing-hero";
-import PricingHighlights from "./pricing-highlights";
-import PricingTabs from "./pricing-tabs";
+import { CreditCard, Sparkles, Store } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
+import { ClosingCta } from "@/shared/ui/site/closing-cta";
+import { FaqList } from "@/shared/ui/site/faq-list";
+import { PageHero } from "@/shared/ui/site/page-hero";
+import { body, h2, label, section, wrap } from "@/shared/ui/site/styles";
+import { pricingFaqs } from "../plans";
 import FeatureComparison from "./feature-comparison";
-import PricingFaq from "./pricing-faq";
+import { PricingPlans } from "./pricing-plans";
+
+const included = [
+  {
+    icon: SiWhatsapp,
+    title: "WhatsApp checkout",
+    desc: "Customers send their order to your WhatsApp in one tap. On every plan, not an add-on.",
+  },
+  {
+    icon: CreditCard,
+    title: "Paystack, transfer and cards",
+    desc: "Take payment the way your customers already pay. Transfers to your own account carry no fee from us.",
+  },
+  {
+    icon: Store,
+    title: "Your own storefront",
+    desc: "A branded store you edit yourself, with discounts, collections and SEO built in.",
+  },
+  {
+    icon: Sparkles,
+    title: "Zuri AI",
+    desc: "Ask about your sales and stock, or how to do anything in the app.",
+  },
+];
 
 export default function PricingPage() {
   return (
     <>
-      <PricingHero />
-
-      <div className="relative">
-        <div className="shape absolute sm:-bottom-px -bottom-0.5 inset-s-0 inset-e-0 overflow-hidden z-1 text-gray-50 dark:text-slate-800">
-          <svg
-            className="w-full h-auto scale-[2.0] origin-top"
-            viewBox="0 0 2880 48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z"
-              fill="currentColor"
-            ></path>
-          </svg>
+      <PageHero
+        eyebrow="Pricing"
+        title="One price. Every way your customers pay."
+        sub="WhatsApp checkout, bank transfer and cards on every plan. Priced in naira, with a 14-day free trial and no card required."
+        overlap="lg"
+      >
+        <div className="mt-12 pb-4 md:mt-14">
+          <PricingPlans />
         </div>
-      </div>
+      </PageHero>
 
-      <PricingHighlights />
-
-      <section className="relative md:py-24 py-16">
-        <div className="container relative">
-          <FadeInUp className="grid grid-cols-1 pb-8 text-center">
-            <h3 className="mb-4 md:text-5xl text-3xl leading-tight font-bold max-w-2xl mx-auto">
-              Choose your plan
-            </h3>
-            <p className="text-slate-400 text-lg max-w-xl mx-auto">
-              Simple, transparent plans that grow with your store — no
-              surprise fees, no long-term contract.
-            </p>
-          </FadeInUp>
-
-          <PricingTabs />
+      <section className={`${wrap} pb-24 pt-16 md:pb-32 md:pt-24`}>
+        <p className={`${label} text-primary`}>On every plan</p>
+        <div className="mt-8 grid gap-10 border-t border-line pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          {included.map((i) => (
+            <div key={i.title}>
+              <i.icon className="size-5 text-primary" />
+              <h3 className="mt-4 text-[17px] font-bold text-ink">{i.title}</h3>
+              <p className="mt-2 text-[15px] leading-[1.6] text-copy">{i.desc}</p>
+            </div>
+          ))}
         </div>
-
-        <div className="container relative md:py-24 py-16">
-          <FadeInUp className="grid grid-cols-1 pb-8 text-center">
-            <h3 className="mb-4 md:text-5xl text-3xl leading-tight font-bold max-w-2xl mx-auto">
-              Every feature, side by side
-            </h3>
-            <p className="text-slate-400 text-lg max-w-xl mx-auto">
-              See exactly what&apos;s included on each plan before you
-              choose — no guessing, no fine print.
-            </p>
-          </FadeInUp>
-
-          <FeatureComparison />
-        </div>
-
-        <div className="container relative md:py-24 py-16">
-          <FadeInUp className="grid grid-cols-1 pb-8 text-center">
-            <h3 className="mb-4 md:text-5xl text-3xl leading-tight font-bold max-w-2xl mx-auto">
-              Questions about pricing
-            </h3>
-            <p className="text-slate-400 text-lg max-w-xl mx-auto">
-              Everything you need to know before you get started, straight
-              from the plans themselves.
-            </p>
-          </FadeInUp>
-
-          <PricingFaq />
-        </div>
-
-        <ContactCta className="container relative md:mt-24 mt-16" />
       </section>
+
+      <section className="border-t border-line">
+        <div className={`${wrap} ${section}`}>
+          <p className={`${label} text-primary`}>Compare plans</p>
+          <h2 className={`${h2} mt-4 max-w-[18ch]`}>Every feature, side by side.</h2>
+          <p className={`${body} mt-5 max-w-[52ch]`}>
+            See exactly what&apos;s included on each plan before you choose.
+          </p>
+          <div className="mt-12">
+            <FeatureComparison />
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-line">
+        <div className={`${wrap} ${section} grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]`}>
+          <div>
+            <p className={`${label} text-primary`}>Questions</p>
+            <h2 className={`${h2} mt-4 max-w-[12ch]`}>Questions about pricing.</h2>
+          </div>
+          <FaqList items={pricingFaqs} />
+        </div>
+      </section>
+
+      <ClosingCta />
     </>
   );
 }
