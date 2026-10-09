@@ -130,7 +130,7 @@ export const comparison: {
   {
     group: "Marketing and reports",
     rows: [
-      { label: "Email and SMS campaigns", values: [true, true, true, true] },
+      { label: "Email campaigns", values: [true, true, true, true] },
       { label: "Discounts and loyalty", values: [true, true, true, true] },
       { label: "Abandoned cart recovery", values: [true, true, true, true] },
       { label: "Blog and product reviews", values: [true, true, true, true] },
@@ -160,7 +160,7 @@ export const pricingFaqs = [
   },
   {
     q: "What are credits for?",
-    a: "Credits pay for email and SMS campaigns. Each plan comes with a monthly allowance, and you can top up whenever you need more.",
+    a: "Credits pay for email campaigns and abandoned cart reminders, one credit per email. Each plan comes with a monthly allowance, and you can top up whenever you need more.",
   },
   {
     q: "Do you charge transaction fees on top of the plan price?",

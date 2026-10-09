@@ -74,7 +74,7 @@ export const inventory: FeatureContent = {
     },
   ],
   capabilities: [
-    { icon: Package, title: "Bundles", body: "Sell a set as one listing with its own price, while each item's stock still tracks." },
+    { icon: Package, title: "Bundles", body: "Sell items together at a discount, with customers picking each item's size or colour." },
     { icon: Layers, title: "Collections", body: "Group products for your menus, homepage and the POS." },
     { icon: Upload, title: "Spreadsheet import", body: "Import products, variants and prices from a CSV or Excel file using our template." },
     { icon: Video, title: "Photos and video", body: "A photo gallery and one short video for every product." },
@@ -92,11 +92,11 @@ export const marketing: FeatureContent = {
   meta: {
     title: "Customers and marketing",
     description:
-      "Customer records, discount codes, loyalty points, email and SMS campaigns and abandoned cart reminders, in the same place as your orders.",
+      "Customer records, discount codes, loyalty points, email campaigns and abandoned cart reminders, in the same place as your orders.",
   },
   hero: {
     title: "Bring customers back, without a plugin.",
-    sub: "Customer records, discount codes, loyalty points and email or SMS campaigns, all in the same place as your orders.",
+    sub: "Customer records, discount codes, loyalty points and email campaigns, all in the same place as your orders.",
     visual: <CampaignCard className="mx-auto max-w-[460px]" />,
   },
   spotlights: [
@@ -116,8 +116,8 @@ export const marketing: FeatureContent = {
     {
       label: "Campaigns",
       title: "Write once, send to everyone.",
-      body: "Send a new arrival, a sale or a holiday notice by email or SMS. Schedule it or send it now, and see who opened it. Campaigns use credits from your plan, and you can top up any time.",
-      points: ["Email and SMS", "Schedule or send now", "Open tracking", "Monthly credits"],
+      body: "Email a new arrival, a sale or a holiday notice, built from your own images. Send yourself a test first, then see how many opened it. Campaigns use credits from your plan, and you can top up any time.",
+      points: ["Image-led emails", "Test before you send", "Open tracking", "Monthly credits"],
       visual: <CampaignCard className="mx-auto max-w-[460px]" />,
     },
     {
@@ -131,7 +131,7 @@ export const marketing: FeatureContent = {
     { icon: Users, title: "Customer groups", body: "Group customers for wholesale, VIPs or anything you like." },
     { icon: BadgePercent, title: "Discount codes", body: "Percentage, fixed amount or free shipping, with usage limits and end dates." },
     { icon: Gift, title: "Loyalty points", body: "Points on spend, redeemed for money off a later order." },
-    { icon: Mail, title: "Email and SMS", body: "Campaigns to your whole list, sent now or scheduled." },
+    { icon: Mail, title: "Email campaigns", body: "Emails to your customers and subscribers, built from your own images." },
     { icon: ShoppingCart, title: "Cart reminders", body: "Automatic emails for carts left behind." },
     { icon: Star, title: "Product reviews", body: "Let buyers review what they bought." },
     { icon: Newspaper, title: "Blog", body: "Posts on your own storefront, good for search." },

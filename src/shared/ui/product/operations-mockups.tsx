@@ -207,11 +207,11 @@ export function DiscountLoyalty({ className }: { className?: string }) {
 export function CampaignCard({ className }: { className?: string }) {
   return (
     <Panel title="Campaigns" meta="612 credits left" className={className}>
-      <Tabs items={["Sent", "Scheduled", "Drafts"]} />
+      <Tabs items={["All", "Sent", "Drafts"]} />
       {[
         { name: "New arrivals for Easter", ch: "Email", sent: "1,284", opened: "34%", tone: "green" as const, status: "Sent 2 Apr" },
-        { name: "We're open on Sallah day", ch: "SMS", sent: "860", opened: "—", tone: "green" as const, status: "Sent 30 Mar" },
-        { name: "Weekend flash sale", ch: "Email", sent: "1,302", opened: "—", tone: "blue" as const, status: "Fri, 09:00" },
+        { name: "We're open on Sallah day", ch: "Email", sent: "860", opened: "41%", tone: "green" as const, status: "Sent 30 Mar" },
+        { name: "Weekend flash sale", ch: "Email", sent: "1,302", opened: "—", tone: "grey" as const, status: "Draft" },
       ].map((c) => (
         <Row key={c.name}>
           <span className="flex size-7 shrink-0 items-center justify-center rounded-md border border-[#ebeef1]">
