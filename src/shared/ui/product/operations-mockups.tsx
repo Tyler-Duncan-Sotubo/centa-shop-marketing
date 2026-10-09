@@ -148,7 +148,6 @@ export function CustomerCard({ className }: { className?: string }) {
           <div className="text-[14px] font-semibold">Adaeze Okafor</div>
           <div className={cn("text-[11px]", faint)}>Customer since March · Lagos</div>
         </div>
-        <span className="rounded-md bg-[#f6f9fc] px-2 py-1 text-[11px] font-medium">VIP</span>
       </div>
       <div className={cn("grid grid-cols-3 divide-x border-b divide-[#ebeef1]", rule)}>
         {[

@@ -115,7 +115,6 @@ export const comparison: {
       { label: "Multi-location stock", values: [true, true, true, true] },
       { label: "Quotes and custom orders", values: [true, true, true, true] },
       { label: "Bulk actions", values: [true, true, true, true] },
-      { label: "Customer groups", values: [true, true, true, true] },
     ],
   },
   {

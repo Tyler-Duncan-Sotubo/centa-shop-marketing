@@ -103,8 +103,8 @@ export const marketing: FeatureContent = {
     {
       label: "Customers",
       title: "Know who's buying.",
-      body: "Every order and quote rolls up to a customer record. Group customers, like wholesale accounts or VIPs, and see each one's history, spend and loyalty balance.",
-      points: ["Order history", "Customer groups", "Spend and points", "Wholesale accounts"],
+      body: "Every order and quote rolls up to a customer record, so you can see each one's history, spend and loyalty balance. Bring your existing list in from a spreadsheet.",
+      points: ["Order history", "Spend and points", "Spreadsheet import", "Marketing consent"],
       visual: <CustomerCard className="mx-auto max-w-[440px]" />,
     },
     {
@@ -128,7 +128,7 @@ export const marketing: FeatureContent = {
     },
   ],
   capabilities: [
-    { icon: Users, title: "Customer groups", body: "Group customers for wholesale, VIPs or anything you like." },
+    { icon: Users, title: "Customer import", body: "Bring your customer list in from a spreadsheet." },
     { icon: BadgePercent, title: "Discount codes", body: "Percentage, fixed amount or free shipping, with usage limits and end dates." },
     { icon: Gift, title: "Loyalty points", body: "Points on spend, redeemed for money off a later order." },
     { icon: Mail, title: "Email campaigns", body: "Emails to your customers and subscribers, built from your own images." },
